@@ -1,7 +1,8 @@
 (.*/)*.DS_Store
 .DS_Store
 ~*
-.doc/
-.diskPath/
-.target/
+doc/
+diskPath/
+target/
 .idea/
+*.iml
