@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <caches>
+        <cache id="default">
+            <cacheattributes class="pro.eddiecache.core.ContextCacheAttributes">
+                <property name="MaxObjects" value="1000" />
+                <property name="MemoryCacheName" value="pro.eddiecache.core.memory.lru.LRUMemoryCache" />
+                <property name="UseMemoryShrinker" value="true" />
+                <property name="MaxMemoryIdleTimeSeconds" value="3600" />
+				<property name="ShrinkerIntervalSeconds" value="60" />
+				<property name="MaxSpoolPerRun" value="50" />
+            </cacheattributes>
+			
+			<elementattributes class="pro.eddiecache.core.ElementAttributes">
+				<property name="IsEternal" value="false" />
+			</elementattributes>
+			<kit>kit1,kit2</kit>
+        </cache>
+    </caches>
+	
+	
+    <kits>
+		<kit id="kit1" class="pro.eddiecache.kits.disk.indexed.IndexedDiskCacheFactory">
+			<attributes class="pro.eddiecache.kits.disk.indexed.IndexedDiskCacheAttributes">
+				<property name="DiskPath" value="diskPath/paxos1" />
+			</attributes>
+		</kit>
+		
+		<kit id="kit2" class="pro.eddiecache.kits.paxos.PaxosCacheFactory">
+			<attributes class="pro.eddiecache.kits.paxos.PaxosCacheAttributes">
+				<property name="servers" value="127.0.0.1:2463,127.0.0.1:2464,127.0.0.1:2465" />
+				<property name="myPosition" value="0" />
+			</attributes>
+		</kit>
+		
+	</kits>
+</configuration>

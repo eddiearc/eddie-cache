@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="133b5e5c-60de-45d1-b3db-912e2a7c1f74" name="Default Changelist" comment="update test class" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1oEcCs9BhA4RLDPPn8CDQJ39g0b" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="sortByType" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="pro.eddiecache" />
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main" />
+      <recent name="$PROJECT_DIR$/src/test" />
+      <recent name="$PROJECT_DIR$/conf/paxos3" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Test1">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration name="Paxos1Test" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Paxos1Test" />
+      <module name="EddieCache" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Paxos2Test" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Paxos2Test" />
+      <module name="EddieCache" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Paxos3Test" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Paxos3Test" />
+      <module name="EddieCache" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test1" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test1" />
+      <module name="EddieCache" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test2" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test2" />
+      <module name="EddieCache" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Paxos1Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="133b5e5c-60de-45d1-b3db-912e2a7c1f74" name="Default Changelist" comment="" />
+      <created>1612855065791</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612855065791</updated>
+      <workItem from="1612855067325" duration="527000" />
+      <workItem from="1612855655551" duration="5957000" />
+      <workItem from="1613009003108" duration="14647000" />
+      <workItem from="1613116162054" duration="7816000" />
+      <workItem from="1613273503172" duration="3206000" />
+    </task>
+    <task id="LOCAL-00001" summary="update test class">
+      <created>1612857754543</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1612857754543</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="update test class" />
+    <option name="LAST_COMMIT_MESSAGE" value="update test class" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="487" y="210" key="#Paxos1Test" timestamp="1612858286367">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="487" y="210" key="#Paxos1Test/0.23.1680.1027@0.23.1680.1027" timestamp="1612858286367" />
+    <state x="487" y="210" key="#Paxos2Test" timestamp="1612858300317">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="487" y="210" key="#Paxos2Test/0.23.1680.1027@0.23.1680.1027" timestamp="1612858300317" />
+    <state x="487" y="210" key="#Paxos3Test" timestamp="1612858332211">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="487" y="210" key="#Paxos3Test/0.23.1680.1027@0.23.1680.1027" timestamp="1612858332211" />
+    <state x="440" y="203" key="#Project_Structure" timestamp="1612855546076">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="440" y="203" key="#Project_Structure/0.23.1680.1027@0.23.1680.1027" timestamp="1612855546076" />
+    <state x="487" y="210" key="#Test1" timestamp="1612858347157">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="487" y="210" key="#Test1/0.23.1680.1027@0.23.1680.1027" timestamp="1612858347157" />
+    <state x="487" y="210" key="#Test2" timestamp="1612858355791">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="487" y="210" key="#Test2/0.23.1680.1027@0.23.1680.1027" timestamp="1612858355791" />
+    <state x="304" y="200" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1612858376604">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="304" y="200" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1612858376604" />
+    <state x="549" y="346" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1612857454384">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="549" y="346" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.1027@0.23.1680.1027" timestamp="1612857454384" />
+    <state x="452" y="215" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1613273529983">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="452" y="215" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1613273529983" />
+    <state x="404" y="468" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1613355074329">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="404" y="468" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1613355074329" />
+    <state x="604" y="427" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1613355076235">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="604" y="427" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.23.1680.1027@0.23.1680.1027" timestamp="1613355076235" />
+    <state x="417" y="137" key="CommitChangelistDialog2" timestamp="1612857754258">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="417" y="137" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1612857754258" />
+    <state width="460" height="466" key="DebuggerActiveHint" timestamp="1613119322227">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="460" height="466" key="DebuggerActiveHint/0.23.1680.1027@0.23.1680.1027" timestamp="1613119322227" />
+    <state x="100" y="123" width="1480" height="827" key="DiffContextDialog" timestamp="1612857510572">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="100" y="123" width="1480" height="827" key="DiffContextDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1612857510572" />
+    <state width="1638" height="281" key="GridCell.Tab.0.bottom" timestamp="1613355280664">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="281" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1613355280664" />
+    <state width="1638" height="281" key="GridCell.Tab.0.center" timestamp="1613355280662">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="281" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1613355280662" />
+    <state width="1638" height="281" key="GridCell.Tab.0.left" timestamp="1613355280662">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="281" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1613355280662" />
+    <state width="1638" height="281" key="GridCell.Tab.0.right" timestamp="1613355280663">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="281" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1613355280663" />
+    <state width="1638" height="322" key="GridCell.Tab.1.bottom" timestamp="1613225575668">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="322" key="GridCell.Tab.1.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1613225575668" />
+    <state width="1638" height="322" key="GridCell.Tab.1.center" timestamp="1613225575666">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="322" key="GridCell.Tab.1.center/0.23.1680.1027@0.23.1680.1027" timestamp="1613225575666" />
+    <state width="1638" height="322" key="GridCell.Tab.1.left" timestamp="1613225575666">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="322" key="GridCell.Tab.1.left/0.23.1680.1027@0.23.1680.1027" timestamp="1613225575666" />
+    <state width="1638" height="322" key="GridCell.Tab.1.right" timestamp="1613225575668">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="322" key="GridCell.Tab.1.right/0.23.1680.1027@0.23.1680.1027" timestamp="1613225575668" />
+    <state x="585" y="254" key="RollbackChangesDialog" timestamp="1612857195246">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="585" y="254" key="RollbackChangesDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1612857195246" />
+    <state x="328" y="119" key="SettingsEditor" timestamp="1613353699659">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="328" y="119" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1613353699659" />
+    <state x="495" y="300" width="689" height="472" key="find.popup" timestamp="1613354321801">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="495" y="300" width="689" height="472" key="find.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1613354321801" />
+    <state x="602" y="151" key="refactoring.ChangeSignatureDialog" timestamp="1613013811775">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="602" y="151" key="refactoring.ChangeSignatureDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1613013811775" />
+    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup" timestamp="1613353929565">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1613353929565" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/code/pro/eddiecache/core/control/ContextCache.java</url>
+          <line>395</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/code/pro/eddiecache/kits/disk/AbstractDiskCache.java</url>
+          <line>130</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/code/pro/eddiecache/kits/disk/indexed/IndexedDiskCache.java</url>
+          <line>535</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/code/pro/eddiecache/core/control/ContextCache.java</url>
+          <line>379</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
