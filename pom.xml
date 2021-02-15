@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pro.eddiecache</groupId>
-    <artifactId>EddieCache</artifactId>
+    <artifactId>eddie-cache</artifactId>
     <version>1.0.0</version>
     <build>
         <plugins>
