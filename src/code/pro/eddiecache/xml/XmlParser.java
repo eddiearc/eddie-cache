@@ -13,6 +13,11 @@ public class XmlParser
 
 	private static final Log log = LogFactory.getLog(XmlParser.class);
 
+	/**
+	 * 通过xml文件获取对应的Properties对象
+	 *
+	 * @param xmlFile 放置xml文件的位置
+	 */
 	public static Properties getPropertiesFromXml(String xmlFile)
 	{
 		InputStream is = XmlParser.class.getResourceAsStream(xmlFile);
@@ -82,6 +87,9 @@ public class XmlParser
 		return prop;
 	}
 
+	/**
+	 * 将originalPro的属性内容加上前缀prefix，再添加到currentPro中
+	 */
 	private static void addPrefix(Properties originalPro, String prefix, Properties currentPro)
 	{
 		Iterator<?> it = originalPro.entrySet().iterator();
@@ -95,6 +103,9 @@ public class XmlParser
 		}
 	}
 
+	/**
+	 * log记录
+	 */
 	private static void xml2PropertyLogger(Properties properties)
 	{
 		Iterator<?> it = properties.entrySet().iterator();

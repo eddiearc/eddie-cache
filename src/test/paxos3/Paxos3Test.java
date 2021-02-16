@@ -10,7 +10,7 @@ public class Paxos3Test
 	{
 
 		CacheKit.setConfigFilename("/paxos3/cachekit.xml");
-		CacheKitAccess cacheKitAccess = CacheKit.getInstance("default");
+		CacheKitAccess cacheKitAccess = CacheKit.getInstance("paxos3");
 		//main线程休眠，等待服务发现和注册的完成
 		Thread.sleep(60000);
 

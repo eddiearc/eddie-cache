@@ -17,7 +17,7 @@ public class Paxos1Test
 		System.out.println(log.isInfoEnabled());
 
 		CacheKit.setConfigFilename("/paxos1/cachekit.xml");
-		CacheKitAccess cacheKitAccess = CacheKit.getInstance("default");
+		CacheKitAccess cacheKitAccess = CacheKit.getInstance("paxos1");
 
 		//main线程休眠，等待服务发现和注册的完成
 		Thread.sleep(60000);
