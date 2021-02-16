@@ -22,7 +22,7 @@ public class ContextCacheAttributes implements IContextCacheAttributes
 
 	private static final int DEFAULT_MAX_SPOOL_PER_RUN = -1;
 
-	private static final String DEFAULT_MEMORY_CACHE_NAME = "com.cachekit.core.memory.lru.LRUMemoryCache";
+	private static final String DEFAULT_MEMORY_CACHE_NAME = "pro.eddiecache.core.memory.lru.LRUMemoryCache";
 
 	private static final int DEFAULT_CHUNK_SIZE = 2;
 

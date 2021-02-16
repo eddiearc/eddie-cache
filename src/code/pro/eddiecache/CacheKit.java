@@ -19,6 +19,11 @@ public abstract class CacheKit
 
 	private static ContextCacheManager cacheMgr;
 
+	/**
+	 * 指定对应的配置文件
+	 *
+	 * @param configFilename 配置文件路径与名称
+	 */
 	public static void setConfigFilename(String configFilename)
 	{
 		CacheKit.configFilename = configFilename;

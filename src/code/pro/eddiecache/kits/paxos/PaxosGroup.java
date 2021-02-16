@@ -52,6 +52,7 @@ public class PaxosGroup implements CommLayer.MessageListener
 		failureDetector.dispatch(message);
 	}
 
+	@Override
 	public void receive(byte[] message)
 	{
 		dispatch((Serializable) PaxosUtils.deserialize(message));

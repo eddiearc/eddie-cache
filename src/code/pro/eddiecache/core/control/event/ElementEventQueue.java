@@ -12,8 +12,8 @@ import pro.eddiecache.utils.threadpool.CacheKitThreadFactory;
 
 /**
  * 事件队列
+ * @author eddie
  */
-
 public class ElementEventQueue implements IElementEventQueue
 {
 
@@ -40,6 +40,9 @@ public class ElementEventQueue implements IElementEventQueue
 		}
 	}
 
+	/**
+	 * 销毁该事件处理队列
+	 */
 	@Override
 	public void dispose()
 	{
@@ -57,6 +60,12 @@ public class ElementEventQueue implements IElementEventQueue
 		}
 	}
 
+	/**
+	 * 将事件处理器和需要被处理的事件传入队列中并执行
+	 *
+	 * @param handler 事件处理器
+	 * @param event 处理的事件
+	 */
 	@Override
 	public <T> void addElementEvent(IElementEventHandler handler, IElementEvent<T> event) throws IOException
 	{
@@ -83,7 +92,7 @@ public class ElementEventQueue implements IElementEventQueue
 		}
 	}
 
-	// /////////////////////////// 内部类 /////////////////////////////
+	///////////////////////////// 内部类 /////////////////////////////
 
 	protected abstract class AbstractElementEventRunner implements Runnable
 	{

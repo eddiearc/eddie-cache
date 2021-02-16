@@ -1,3 +1,5 @@
+package paxos1;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -14,25 +16,24 @@ public class Paxos1Test
 
 		System.out.println(log.isInfoEnabled());
 
+		CacheKit.setConfigFilename("/paxos1/cachekit.xml");
 		CacheKitAccess cacheKitAccess = CacheKit.getInstance("default");
 
 		//main线程休眠，等待服务发现和注册的完成
-		Thread.sleep(6);
+		Thread.sleep(60000);
 
-		cacheKitAccess.get("id0");
+		System.out.println(cacheKitAccess.get("id0"));
 
 		int max = 3;
 
 		for (int i = 0; i < max; i++)
 		{
-			cacheKitAccess.put("id" + i, i + 10000);
+			cacheKitAccess.put("id" + i, i + 666);
 		}
 		Object id0 = cacheKitAccess.get("id0");
 		System.out.println("缓存对象" + id0);
 
 		//main线程休眠，等待其他节点的读取功能完成
 		Thread.sleep(30000);
-
 	}
-
 }

@@ -131,8 +131,9 @@ public class LeaderRole implements FailureListener
 	{
 		if (iAmElected)
 		{
-			if (messagesCirculating.contains(req.msgId))
+			if (messagesCirculating.contains(req.msgId)) {
 				return;
+			}
 			messagesCirculating.add(req.msgId);
 			createProposal(++seqNo, req.message, req.msgId);
 			assistants.add(new MultiAccept(membership, messenger, seqNo, req.message, req.msgId));
@@ -151,6 +152,7 @@ public class LeaderRole implements FailureListener
 		return viewNumber;
 	}
 
+	@Override
 	public void memberFailed(Member failedMember, Set<Member> aliveMembers)
 	{
 		if (me.equals(PaxosUtils.selectLeader(aliveMembers)))

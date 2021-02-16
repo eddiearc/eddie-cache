@@ -56,7 +56,7 @@ public abstract class MultiRequest<T extends Serializable, R extends MessageWith
 	{
 		if (time > lastResend + RESEND_INTERVAL)
 		{
-			resendRequests(time);
+ 			resendRequests(time);
 		}
 	}
 

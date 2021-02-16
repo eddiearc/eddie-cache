@@ -86,6 +86,11 @@ public class ContextCacheManager implements IContextCacheManager, IProvideSchedu
 		return getInstance(CacheConstants.DEFAULT_CONFIG);
 	}
 
+	/**
+	 * 单例模式，ContextCacheManager只有一个实例对象
+	 *
+	 * @param propsFilename 加载对应的配置
+	 */
 	public static synchronized ContextCacheManager getInstance(String propsFilename) throws CacheException
 	{
 		if (instance == null)
@@ -483,6 +488,7 @@ public class ContextCacheManager implements IContextCacheManager, IProvideSchedu
 		kitCaches.put(key, cache);
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public <K, V> KitCache<K, V> getKitCache(String kitName, String cacheName)
 	{
@@ -566,7 +572,7 @@ public class ContextCacheManager implements IContextCacheManager, IProvideSchedu
 		{
 			if (isInitialized())
 			{
-				log.info("Shut down CacheKit.");
+				log.info("Shut down eddie-cache...");
 				shutDown();
 			}
 		}

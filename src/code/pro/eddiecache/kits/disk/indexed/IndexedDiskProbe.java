@@ -8,7 +8,7 @@ public class IndexedDiskProbe
 	{
 		if (args.length != 1)
 		{
-			System.out.println("Usage: java com.cachekit.kits.disk.indexed.IndexedDiskProbe <cache_name>");
+			System.out.println("Usage: java pro.eddievim.kits.disk.indexed.IndexedDiskProbe <cache_name>");
 			System.exit(0);
 		}
 

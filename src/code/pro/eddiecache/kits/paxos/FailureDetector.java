@@ -55,6 +55,7 @@ public class FailureDetector
 			{
 				initialize(time, member);
 			}
+			// 超时了
 			if (time - lastHeardFrom.get(member) > TIMEOUT)
 			{
 				if (membersAlive.contains(member))

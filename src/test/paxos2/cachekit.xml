@@ -23,7 +23,7 @@
     <kits>
 		<kit id="kit1" class="pro.eddiecache.kits.disk.indexed.IndexedDiskCacheFactory">
 			<attributes class="pro.eddiecache.kits.disk.indexed.IndexedDiskCacheAttributes">
-				<property name="DiskPath" value="E:/" />
+				<property name="DiskPath" value="diskPath/paxos2/" />
 			</attributes>
 		</kit>
 		
