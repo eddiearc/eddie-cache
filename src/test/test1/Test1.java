@@ -17,7 +17,7 @@ public class Test1
 		System.out.println(log.isInfoEnabled());
 
 		CacheKit.setConfigFilename("/test1/cachekit.xml");
-		CacheKitAccess cacheKitAccess = CacheKit.getInstance("default");
+		CacheKitAccess<String, String> cacheKitAccess = CacheKit.getInstance("default");
 
 		//main线程休眠，等待服务发现和注册的完成
 		Thread.sleep(60000);
@@ -28,7 +28,7 @@ public class Test1
 
 		for (int i = 0; i < max; i++)
 		{
-			cacheKitAccess.put("id" + i, i + 100000);
+			cacheKitAccess.put("id" + i, i + 100000 + "");
 		}
 		System.out.println("缓存对象" + cacheKitAccess.get("id0"));
 

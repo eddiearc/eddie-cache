@@ -11,6 +11,9 @@ import pro.eddiecache.core.memory.IMemoryCache;
 import pro.eddiecache.core.model.ICacheElement;
 import pro.eddiecache.core.model.IElementAttributes;
 
+/**
+ * @author eddie
+ */
 public class ShrinkerThread<K, V> implements Runnable
 {
 	private static final Log log = LogFactory.getLog(ShrinkerThread.class);

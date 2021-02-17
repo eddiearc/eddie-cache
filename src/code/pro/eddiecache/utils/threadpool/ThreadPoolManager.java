@@ -15,7 +15,7 @@ public class ThreadPoolManager
 {
 	private static final Log log = LogFactory.getLog(ThreadPoolManager.class);
 
-	private static boolean useBoundary = true;
+	private static boolean useBoundary = false;
 
 	private static int boundarySize = 2000;
 
@@ -180,7 +180,7 @@ public class ThreadPoolManager
 
 		try
 		{
-			config.setUseBoundary(Boolean.parseBoolean(props.getProperty(root + ".useBoundary", "false")));
+			config.setUseBoundary(Boolean.parseBoolean(props.getProperty(root + ".useBoundary", String.valueOf(useBoundary))));
 		}
 		catch (NumberFormatException nfe)
 		{
@@ -189,7 +189,7 @@ public class ThreadPoolManager
 
 		try
 		{
-			config.setBoundarySize(Integer.parseInt(props.getProperty(root + ".boundarySize", "2000")));
+			config.setBoundarySize(Integer.parseInt(props.getProperty(root + ".boundarySize", String.valueOf(boundarySize))));
 		}
 		catch (NumberFormatException nfe)
 		{
@@ -198,7 +198,7 @@ public class ThreadPoolManager
 
 		try
 		{
-			config.setMaximumPoolSize(Integer.parseInt(props.getProperty(root + ".maximumPoolSize", "150")));
+			config.setMaximumPoolSize(Integer.parseInt(props.getProperty(root + ".maximumPoolSize", String.valueOf(maximumPoolSize))));
 		}
 		catch (NumberFormatException nfe)
 		{
@@ -207,7 +207,7 @@ public class ThreadPoolManager
 
 		try
 		{
-			config.setMinimumPoolSize(Integer.parseInt(props.getProperty(root + ".minimumPoolSize", "4")));
+			config.setMinimumPoolSize(Integer.parseInt(props.getProperty(root + ".minimumPoolSize", String.valueOf(minimumPoolSize))));
 		}
 		catch (NumberFormatException nfe)
 		{
@@ -216,18 +216,18 @@ public class ThreadPoolManager
 
 		try
 		{
-			config.setKeepAliveTime(Integer.parseInt(props.getProperty(root + ".keepAliveTime", "300000")));
+			config.setKeepAliveTime(Integer.parseInt(props.getProperty(root + ".keepAliveTime", String.valueOf(keepAliveTime))));
 		}
 		catch (NumberFormatException nfe)
 		{
 			log.error("keepAliveTime not a number.", nfe);
 		}
 
-		config.setWhenBlockedPolicy(props.getProperty(root + ".whenBlockedPolicy", "RUN"));
+		config.setWhenBlockedPolicy(props.getProperty(root + ".whenBlockedPolicy", String.valueOf(whenBlockedPolicy)));
 
 		try
 		{
-			config.setStartUpSize(Integer.parseInt(props.getProperty(root + ".startUpSize", "4")));
+			config.setStartUpSize(Integer.parseInt(props.getProperty(root + ".startUpSize", String.valueOf(startUpSize))));
 		}
 		catch (NumberFormatException nfe)
 		{
