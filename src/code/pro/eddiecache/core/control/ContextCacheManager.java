@@ -150,6 +150,13 @@ public class ContextCacheManager implements IContextCacheManager, IProvideSchedu
 
 	}
 
+	/**
+	 * ContextCacheManager 初始化
+	 * ----------------------------------------------------------------------------
+	 * 1. shutdownHook初始化，与JVM进行绑定，JVM销毁前触发： Runtime.getRuntime().addShutdownHook(shutdownHook);
+	 * 2. 线程池初始化，一个带有4个core线程数的ScheduledThreadPool
+	 * 3. elementEventQueue初始化，用于处理事件的队列，自带一个线程池
+	 */
 	protected void initialize()
 	{
 		if (!isInitialized)
@@ -193,9 +200,7 @@ public class ContextCacheManager implements IContextCacheManager, IProvideSchedu
 	{
 		log.info("Create cache manager from config file: " + xmlFile);
 
-		Properties props = new Properties();
-
-		props = XmlParser.getPropertiesFromXml(xmlFile);
+		Properties props = XmlParser.getPropertiesFromXml(xmlFile);
 		configure(props);
 	}
 

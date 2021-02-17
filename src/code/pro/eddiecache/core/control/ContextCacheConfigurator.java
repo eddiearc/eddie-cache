@@ -345,6 +345,9 @@ public class ContextCacheConfigurator
 		return kitCache;
 	}
 
+	/**
+	 * 若JVM中的系统变量中存在相关变量，则覆盖props中的变量信息
+	 */
 	protected static void overrideWithSystemProperties(Properties props)
 	{
 		Properties sysProps = System.getProperties();
