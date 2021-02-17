@@ -1,6 +1,9 @@
 # eddie-cache
 一个基于内存与磁盘存储的小型分布式缓存系统。
 
+## 架构
+![eddie-cache架构图](https://tva1.sinaimg.cn/large/008eGmZEly1gnqkwy9qd8j30ze0q1ju4.jpg)
+
 ## 配置
 - `commons-loggin.properties` 使用的日志类
 - `simplelog.properties` log打印等级
