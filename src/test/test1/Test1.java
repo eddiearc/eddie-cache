@@ -1,40 +1,18 @@
 package test1;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import pro.eddiecache.CacheKit;
 import pro.eddiecache.access.CacheKitAccess;
+import pro.eddiecache.core.ContextCacheAttributes;
+import pro.eddiecache.core.ElementAttributes;
 
-public class Test1
-{
-	private static final Log log = LogFactory.getLog(Test1.class);
-
-	public static void main(String[] args) throws InterruptedException
-	{
-		System.out.println(log.isDebugEnabled());
-
-		System.out.println(log.isInfoEnabled());
-
-		CacheKit.setConfigFilename("/test1/cachekit.xml");
-		CacheKitAccess<String, String> cacheKitAccess = CacheKit.getInstance("default");
-
-		//main线程休眠，等待服务发现和注册的完成
-		Thread.sleep(60000);
-
-		System.out.println(cacheKitAccess.get("id0"));
-
-		int max = 3;
-
-		for (int i = 0; i < max; i++)
-		{
-			cacheKitAccess.put("id" + i, i + 100000 + "");
-		}
-		System.out.println("缓存对象" + cacheKitAccess.get("id0"));
-
-		//main线程休眠，等待其他节点的读取功能完成
-		Thread.sleep(30000);
-
-	}
-
+/**
+ * @Author eddieVim
+ * @微信公众号 艾迪威姆 / PositiveEddie
+ * @Blog https://blog.csdn.net/weixin_44129784
+ * @Create 2021/2/18 14:15
+ * @Discription
+ */
+public class Test1 {
+    public static void main(String[] args) {
+    }
 }

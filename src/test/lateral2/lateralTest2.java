@@ -1,15 +1,15 @@
-package test2;
+package lateral2;
 
 import pro.eddiecache.CacheKit;
 import pro.eddiecache.access.CacheKitAccess;
 
-public class Test2
+public class lateralTest2
 {
 
 	public static void main(String[] args) throws InterruptedException
 	{
 
-		CacheKit.setConfigFilename("/test2/cachekit.xml");
+		CacheKit.setConfigFilename("/lateral2/cachekit.xml");
 		CacheKitAccess cacheKitAccess = CacheKit.getInstance("default");
 		//main线程休眠，等待服务发现和注册的完成
 		Thread.sleep(60000);
