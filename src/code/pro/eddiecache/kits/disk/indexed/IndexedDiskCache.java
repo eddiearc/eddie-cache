@@ -76,6 +76,7 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 	private final ConcurrentSkipListSet<IndexedDiskElementDescriptor> queuedPutList = new ConcurrentSkipListSet<IndexedDiskElementDescriptor>(
 			new PositionComparator());
 
+	// （回收站）：用于记录已经分配了，但空闲的磁盘位置
 	private ConcurrentSkipListSet<IndexedDiskElementDescriptor> recycle;
 
 	private final IndexedDiskCacheAttributes cattr;
@@ -398,8 +399,10 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 				{
 					ded = new IndexedDiskElementDescriptor(dataFile.length(), data.length);
 
+					// 是否循环使用
 					if (doRecycle)
 					{
+						// 获取下一个对象的位置（长度大于等于该位置的，长度相等时 -> 位置靠前的）
 						IndexedDiskElementDescriptor rep = recycle.ceiling(ded);
 						if (rep != null)
 						{
@@ -865,6 +868,11 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		}
 	}
 
+	/**
+	 * 添加磁盘对象信息到回收站recycle中
+	 *
+	 * @param ded 无用的磁盘对象
+	 */
 	protected void addToRecycleBin(IndexedDiskElementDescriptor ded)
 	{
 		if (ded != null)
@@ -1087,6 +1095,12 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		this.bytesFree.set(0);
 	}
 
+	/**
+	 *调整磁盘空闲的起始位置
+	 *
+	 * @param ded 下标信息
+	 * @param add 是否增量 true OR false
+	 */
 	private void adjustBytesFree(IndexedDiskElementDescriptor ded, boolean add)
 	{
 		if (ded != null)
