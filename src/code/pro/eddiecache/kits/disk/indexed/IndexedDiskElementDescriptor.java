@@ -50,6 +50,11 @@ public class IndexedDiskElementDescriptor implements Serializable, Comparable<In
 		return false;
 	}
 
+	/**
+	 * 重写排序规则：
+	 * 		1. length:	 数据的长度
+	 * 		2. position: 数据存放的起始位置
+	 */
 	@Override
 	public int compareTo(IndexedDiskElementDescriptor o)
 	{
