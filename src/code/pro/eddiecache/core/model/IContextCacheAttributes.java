@@ -6,8 +6,9 @@ public interface IContextCacheAttributes extends Serializable, Cloneable
 {
 	enum DiskUsagePattern
 	{
+		// 在关闭虚拟机的时候或者在持久化操作执行时，才更新至磁盘中
 		SWAP,
-
+		// 实时更新，每次update均执行
 		UPDATE
 	}
 

@@ -22,6 +22,11 @@ public interface ICacheKitAccessManagement
 
 	void setCacheAttributes(IContextCacheAttributes cattr);
 
+	/**
+	 * 释放内存中的对象信息（持久化到磁盘中）
+	 *
+	 * @param numberToFree 释放的数量
+	 */
 	int freeMemoryElements(int numberToFree) throws CacheException;
 
 	ICacheStats getStatistics();

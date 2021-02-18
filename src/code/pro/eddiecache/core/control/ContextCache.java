@@ -264,6 +264,9 @@ public class ContextCache<K, V> implements ICache<K, V>, IRequireScheduler
 		}
 	}
 
+	/**
+	 * 持久化至磁盘中
+	 */
 	public void spoolToDisk(ICacheElement<K, V> ce)
 	{
 		if (!ce.getElementAttributes().getIsSpool())
@@ -918,7 +921,7 @@ public class ContextCache<K, V> implements ICache<K, V>, IRequireScheduler
 
 	public void dispose(boolean fromRemote)
 	{
-		if (alive.compareAndSet(true, false) == false)
+		if (!alive.compareAndSet(true, false))
 		{
 			return;
 		}

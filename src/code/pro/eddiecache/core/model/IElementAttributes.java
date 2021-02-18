@@ -55,6 +55,7 @@ public interface IElementAttributes extends Serializable, Cloneable
 	//处理器
 	void addElementEventHandler(IElementEventHandler eventHandler);
 
+	//处理器列表
 	ArrayList<IElementEventHandler> getElementEventHandlers();
 
 	void addElementEventHandlers(List<IElementEventHandler> eventHandlers);
