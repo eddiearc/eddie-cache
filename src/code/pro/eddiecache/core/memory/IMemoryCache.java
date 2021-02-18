@@ -39,12 +39,25 @@ public interface IMemoryCache<K, V>
 
 	void removeAll() throws IOException;
 
+	/**
+	 * 释放对象
+	 *
+	 * @param numberToFree 指定释放个数
+	 */
 	int freeElements(int numberToFree) throws IOException;
 
-	//属性设置
+	/**
+	 * 获取Context配置对象
+	 */
 	IContextCacheAttributes getCacheAttributes();
 
+	/**
+	 * 设置Context配置对象
+	 */
 	void setCacheAttributes(IContextCacheAttributes cattr);
 
+	/**
+	 * 获取Context对象
+	 */
 	ContextCache<K, V> getContextCache();
 }

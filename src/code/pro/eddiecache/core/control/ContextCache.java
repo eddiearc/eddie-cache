@@ -1187,6 +1187,12 @@ public class ContextCache<K, V> implements ICache<K, V>, IRequireScheduler
 		return false;
 	}
 
+	/**
+	 * 根据K-V对象拿出对应的事件处理器，
+	 *
+	 * @param element 被处理的对象实例
+	 * @param eventType 被处理的对象的事件类型
+	 */
 	public void handleElementEvent(ICacheElement<K, V> element, ElementEventType eventType)
 	{
 		ArrayList<IElementEventHandler> eventHandlers = element.getElementAttributes().getElementEventHandlers();

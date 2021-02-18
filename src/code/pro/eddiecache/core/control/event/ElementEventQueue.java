@@ -88,6 +88,7 @@ public class ElementEventQueue implements IElementEventQueue
 				log.debug("Element event runner = " + runner);
 			}
 
+			// 	异步执行
 			queueProcessor.execute(runner);
 		}
 	}

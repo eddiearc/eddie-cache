@@ -388,6 +388,7 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 			{
 				old = keyHash.get(ce.getKey());
 
+				// 如果已经存在该缓存，并且新的缓存大小不大于旧的缓存大小，则...
 				if (old != null && data.length <= old.len)
 				{
 					ded = old;

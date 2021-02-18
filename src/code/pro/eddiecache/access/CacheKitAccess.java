@@ -85,7 +85,6 @@ public class CacheKitAccess<K, V> extends AbstractCacheKitAccess<K, V> implement
 	@Override
 	public void put(K name, V obj)
 	{
-
 		put(name, obj, this.getCacheControl().getElementAttributes());
 	}
 
