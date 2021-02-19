@@ -397,6 +397,7 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 				}
 				else
 				{
+					// 默认从文件的最末尾处开始放置数据
 					ded = new IndexedDiskElementDescriptor(dataFile.length(), data.length);
 
 					// 检查是否开启回收位置循环使用
@@ -421,6 +422,7 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 
 					keyHash.put(ce.getKey(), ded);
 
+					// 当正在优化存储空间的时候，queueInput值为true
 					if (queueInput)
 					{
 						queuedPutList.add(ded);
@@ -900,6 +902,9 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		}
 	}
 
+	/**
+	 * 实时开始优化（优化磁盘存储）
+	 */
 	protected void doOptimizeRealTime()
 	{
 		if (isRealTimeOptimizationEnabled && !isOptimizing && removeCount++ >= cattr.getOptimizeAtRemoveCount())
@@ -979,6 +984,7 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		{
 			try
 			{
+				// 如果在优化的期间，有新的缓存被新添加进来了，则queuedPutList内是存在元素的，需进行优化
 				if (!queuedPutList.isEmpty())
 				{
 					defragList = queuedPutList.toArray(new IndexedDiskElementDescriptor[0]);
