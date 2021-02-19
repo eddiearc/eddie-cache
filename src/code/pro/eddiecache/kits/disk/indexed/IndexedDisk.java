@@ -33,6 +33,11 @@ class IndexedDisk
 		this.fc = raf.getChannel();
 	}
 
+	/**
+	 * 根据磁盘索引信息转化成对应的对象
+	 *
+	 * @param ded 磁盘索引信息
+	 */
 	protected <T extends Serializable> T readObject(IndexedDiskElementDescriptor ded)
 			throws IOException, ClassNotFoundException
 	{
@@ -46,13 +51,15 @@ class IndexedDisk
 		{
 			ByteBuffer buffer = ByteBuffer.allocate(HEADER_SIZE_BYTES);
 			fc.read(buffer, ded.pos);
-			//数据读写完成，则buffer执行flip，将指针重置为0，方便后续读写操作
+			// 数据读写完成，则buffer执行flip，将指针重置为0，方便后续读写操作
 			buffer.flip();
 			int datalen = buffer.getInt();
+			// 检查数据是否正确，文件中记录的数据长度与索引中的数据长度是否一致
 			if (ded.len != datalen)
 			{
 				corrupted = true;
 			}
+			// 检查数据是否完整
 			else if (ded.pos + ded.len > fileLength)
 			{
 				corrupted = true;
@@ -64,14 +71,23 @@ class IndexedDisk
 			throw new IOException("The file is corrupt.");
 		}
 
-		// 1. 分配一个对应大小的缓冲区； 2. 跳过索引部分，读取数据到缓冲区中； 3. 反序列号
+		// 1. 分配一个对应大小的缓冲区
 		ByteBuffer data = ByteBuffer.allocate(ded.len);
-		fc.read(data, ded.pos + HEADER_SIZE_BYTES);
-		data.flip();
 
+		// 2. 跳过索引部分，读取数据到缓冲区中
+		fc.read(data, ded.pos + HEADER_SIZE_BYTES);
+
+		// 3. 反序列化
+		data.flip();
 		return elementSerializer.deSerialize(data.array(), null);
 	}
 
+	/**
+	 * 将该索引的数据移动到新的文件偏移地址上去
+	 *
+	 * @param ded 索引信息
+	 * @param newPosition 新的文件偏移地址
+	 */
 	protected void move(final IndexedDiskElementDescriptor ded, final long newPosition) throws IOException
 	{
 		ByteBuffer buf = ByteBuffer.allocate(HEADER_SIZE_BYTES);
@@ -92,8 +108,9 @@ class IndexedDisk
 
 		while (remaining > 0)
 		{
-
+			// 以一个chunk为单位进行数据的转移
 			int chunkSize = Math.min(remaining, buffer.capacity());
+			// 限制数据只能放置那么多
 			buffer.limit(chunkSize);
 			fc.read(buffer, readPos);
 			buffer.flip();
@@ -156,6 +173,9 @@ class IndexedDisk
 		fc.close();
 	}
 
+	/**
+	 * 清空内容
+	 */
 	protected synchronized void reset() throws IOException
 	{
 		if (log.isDebugEnabled())
@@ -166,7 +186,11 @@ class IndexedDisk
 		fc.force(true);
 	}
 
-	//截断文件
+	/**
+	 * 截断，该文件中length之后的数据均删除
+	 *
+	 * @param length 指定的length
+	 */
 	protected void truncate(long length) throws IOException
 	{
 		if (log.isInfoEnabled())

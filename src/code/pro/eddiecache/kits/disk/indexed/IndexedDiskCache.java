@@ -944,6 +944,9 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		}
 	}
 
+	/**
+	 * 优化存储文件的空间利用率
+	 */
 	protected void optimizeFile()
 	{
 		ElapsedTimer timer = new ElapsedTimer();
@@ -978,7 +981,7 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 			{
 				if (!queuedPutList.isEmpty())
 				{
-					defragList = queuedPutList.toArray(new IndexedDiskElementDescriptor[queuedPutList.size()]);
+					defragList = queuedPutList.toArray(new IndexedDiskElementDescriptor[0]);
 
 					expectedNextPos = defragFile(defragList, expectedNextPos);
 				}
@@ -1011,9 +1014,8 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 	/**
 	 * 整理磁盘碎片
 	 *
-	 * @param defragList
-	 * @param startingPos
-	 * @return
+	 * @param defragList 需要被整理的磁盘空间所对应索引信息列表（必须是连续的）
+	 * @param startingPos 开始整理的文件偏移地址
 	 */
 	private long defragFile(IndexedDiskElementDescriptor[] defragList, long startingPos)
 	{
@@ -1030,6 +1032,7 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 				storageLock.writeLock().lock();
 				try
 				{
+					// 当前磁盘索引不是期望的偏移地址，则表示有磁盘碎片，移动数据
 					if (expectedNextPos != defragList[i].pos)
 					{
 						dataFile.move(defragList[i], expectedNextPos);
@@ -1062,6 +1065,11 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		return 0;
 	}
 
+	/**
+	 * 返回所有的索引信息，根据每个索引所对应的数据的起始文件偏移位置排序
+	 *
+	 * @return 排序之后的索引信息
+	 */
 	private IndexedDiskElementDescriptor[] createPositionSortedDescriptorList()
 	{
 		IndexedDiskElementDescriptor[] defragList = new IndexedDiskElementDescriptor[keyHash.size()];
