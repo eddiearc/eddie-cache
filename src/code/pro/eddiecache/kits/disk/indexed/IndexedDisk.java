@@ -108,6 +108,12 @@ class IndexedDisk
 		ded.pos = newPosition;
 	}
 
+	/**
+	 * 根据文件的下标、长度等信息将数据写到磁盘中
+	 *
+	 * @param ded 下标信息
+	 * @param data 写入的数据
+	 */
 	protected boolean write(IndexedDiskElementDescriptor ded, byte[] data) throws IOException
 	{
 		long pos = ded.pos;
@@ -127,6 +133,12 @@ class IndexedDisk
 		return written == data.length;
 	}
 
+	/**
+	 * 将对象写入指定的偏移位置之后
+	 *
+	 * @param obj 写入的对象
+	 * @param pos 指定的文件偏移位置
+	 */
 	protected boolean writeObject(Serializable obj, long pos) throws IOException
 	{
 		byte[] data = elementSerializer.serialize(obj);

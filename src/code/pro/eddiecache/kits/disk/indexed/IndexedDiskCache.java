@@ -389,7 +389,7 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 			{
 				old = keyHash.get(ce.getKey());
 
-				// 如果已经存在该缓存，并且新的缓存大小不大于旧的缓存大小，则...
+				// 如果已经存在相同Key的缓存，并且新的缓存的大小「不大于」旧的缓存大小，则...
 				if (old != null && data.length <= old.len)
 				{
 					ded = old;
@@ -399,10 +399,10 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 				{
 					ded = new IndexedDiskElementDescriptor(dataFile.length(), data.length);
 
-					// 是否循环使用
+					// 检查是否开启回收位置循环使用
 					if (doRecycle)
 					{
-						// 获取下一个对象的位置（长度大于等于该位置的，长度相等时 -> 位置靠前的）
+						// 从回收站中获取获取下一个对象的位置（长度大于等于该位置的，长度相等时 -> 位置靠前的）
 						IndexedDiskElementDescriptor rep = recycle.ceiling(ded);
 						if (rep != null)
 						{
@@ -430,6 +430,7 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 						}
 					}
 
+					// 存在相同Key的旧缓存，但放不下新的缓存内容，将该缓存位置加入回收站
 					if (old != null)
 					{
 						addToRecycleBin(old);
@@ -1007,6 +1008,13 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		}
 	}
 
+	/**
+	 * 整理磁盘碎片
+	 *
+	 * @param defragList
+	 * @param startingPos
+	 * @return
+	 */
 	private long defragFile(IndexedDiskElementDescriptor[] defragList, long startingPos)
 	{
 		ElapsedTimer timer = new ElapsedTimer();
@@ -1096,10 +1104,12 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 	}
 
 	/**
-	 *调整磁盘空闲的起始位置
+	 * 调整磁盘碎片总空间（已经分配了但还没用的空间）的大小
 	 *
 	 * @param ded 下标信息
-	 * @param add 是否增量 true OR false
+	 * @param add 是否增量
+	 *               true： 增加磁盘碎片的总空间
+	 *               false： 减少磁盘碎片总空间
 	 */
 	private void adjustBytesFree(IndexedDiskElementDescriptor ded, boolean add)
 	{
