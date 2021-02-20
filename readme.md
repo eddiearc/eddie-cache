@@ -16,7 +16,7 @@
 
 ## 缓存实例相关原理
 - DiskCache
-    - [IndexedDiskCache](https://github.com/eddieVim/eddie-cache/blob/master/AboutIndexedDiskCacheKit.md)
+    - [IndexedDiskCache](./AboutIndexedDiskCacheKit.md)
     - [BlockDiskCache]()
 - [LateralCache]()
 - [PaxosCache]()
