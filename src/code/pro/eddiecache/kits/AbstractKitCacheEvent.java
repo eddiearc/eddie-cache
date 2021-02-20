@@ -79,6 +79,11 @@ public abstract class AbstractKitCacheEvent<K, V> extends AbstractKitCache<K, V>
 
 	protected abstract Map<K, ICacheElement<K, V>> processGetMultiple(Set<K> keys) throws IOException;
 
+	/**
+	 * 根据正则匹配，匹配对应的Key，找寻对应的K-V数据
+	 *
+	 * @param pattern 正则表达式
+	 */
 	@Override
 	public Map<K, ICacheElement<K, V>> getMatching(String pattern) throws IOException
 	{
@@ -99,6 +104,11 @@ public abstract class AbstractKitCacheEvent<K, V> extends AbstractKitCache<K, V>
 		}
 	}
 
+	/**
+	 * 根据正则匹配，匹配对应的Key，找寻对应的K-V数据
+	 *
+	 * @param pattern 正则表达式
+	 */
 	protected abstract Map<K, ICacheElement<K, V>> processGetMatching(String pattern) throws IOException;
 
 	@Override

@@ -270,6 +270,9 @@ public abstract class AbstractLRUMap<K, V> implements Map<K, V>
 		return null;
 	}
 
+	/**
+	 * 是否应该进行移除（LRU算法是否运行的依据）
+	 */
 	protected abstract boolean shouldRemove();
 
 	private void addFirst(K key, V val)
@@ -430,6 +433,9 @@ public abstract class AbstractLRUMap<K, V> implements Map<K, V>
 		}
 	}
 
+	/**
+	 * 使用LRU算法进行移除
+	 */
 	protected void processRemovedLRU(K key, V value)
 	{
 		if (log.isDebugEnabled())
@@ -456,11 +462,11 @@ public abstract class AbstractLRUMap<K, V> implements Map<K, V>
 
 		ArrayList<IStatElement<?>> elems = new ArrayList<IStatElement<?>>();
 
-		elems.add(new StatElement<Integer>("List Size", Integer.valueOf(list.size())));
-		elems.add(new StatElement<Integer>("Map Size", Integer.valueOf(map.size())));
-		elems.add(new StatElement<Integer>("Put Count", Integer.valueOf(putCnt)));
-		elems.add(new StatElement<Integer>("Hit Count", Integer.valueOf(hitCnt)));
-		elems.add(new StatElement<Integer>("Miss Count", Integer.valueOf(missCnt)));
+		elems.add(new StatElement<Integer>("List Size", list.size()));
+		elems.add(new StatElement<Integer>("Map Size", map.size()));
+		elems.add(new StatElement<Integer>("Put Count", putCnt));
+		elems.add(new StatElement<Integer>("Hit Count", hitCnt));
+		elems.add(new StatElement<Integer>("Miss Count", missCnt));
 
 		stats.setStatElements(elems);
 

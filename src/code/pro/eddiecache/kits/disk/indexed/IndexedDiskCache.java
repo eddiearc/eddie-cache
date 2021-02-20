@@ -149,6 +149,11 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		}
 	}
 
+	/**
+	 * 根据配置信息，从磁盘中获取索引信息与对应的数据
+	 *
+	 * @param cattr 配置信息
+	 */
 	private void initializeKeysAndData(IndexedDiskCacheAttributes cattr) throws IOException
 	{
 		this.dataFile = new IndexedDisk(new File(cacheFileDir, fileName + ".data"), getElementSerializer());
@@ -172,6 +177,9 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		}
 	}
 
+	/**
+	 * 从磁盘存储中恢复空的数据
+	 */
 	private void initializeEmptyStore() throws IOException
 	{
 		initializeKeyMap();
@@ -182,6 +190,9 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		}
 	}
 
+	/**
+	 * 从磁盘存储中恢复数据
+	 */
 	private void initializeStoreFromPersistedData() throws IOException
 	{
 		loadKeys();
@@ -212,6 +223,9 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		}
 	}
 
+	/**
+	 * 从磁盘中加载数据索引
+	 */
 	protected void loadKeys()
 	{
 		if (log.isDebugEnabled())
@@ -540,8 +554,7 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 			}
 			try
 			{
-				ICacheElement<K, V> readObject = dataFile.readObject(ded);
-				object = readObject;
+				object = dataFile.readObject(ded);
 			}
 			catch (IOException e)
 			{
@@ -984,7 +997,7 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		{
 			try
 			{
-				// 如果在优化的期间，有新的缓存被新添加进来了，则queuedPutList内是存在元素的，需进行优化
+				// 如果在优化的开始后，storageLock加锁了，这期间有新的缓存被新添加进来了，则queuedPutList中是有索引信息的，需进行优化
 				if (!queuedPutList.isEmpty())
 				{
 					defragList = queuedPutList.toArray(new IndexedDiskElementDescriptor[0]);
@@ -1199,13 +1212,13 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 
 		ArrayList<IStatElement<?>> elems = new ArrayList<IStatElement<?>>();
 
-		elems.add(new StatElement<Boolean>("Is Alive", Boolean.valueOf(isAlive())));
+		elems.add(new StatElement<Boolean>("Is Alive", isAlive()));
 		elems.add(new StatElement<Integer>("Key Map Size",
-				Integer.valueOf(this.keyHash != null ? this.keyHash.size() : -1)));
+				this.keyHash != null ? this.keyHash.size() : -1));
 		try
 		{
 			elems.add(new StatElement<Long>("Data File Length",
-					Long.valueOf(this.dataFile != null ? this.dataFile.length() : -1L)));
+					this.dataFile != null ? this.dataFile.length() : -1L));
 		}
 		catch (IOException e)
 		{
@@ -1214,11 +1227,11 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		elems.add(new StatElement<Integer>("Max Key Size", this.maxKeySize));
 		elems.add(new StatElement<AtomicInteger>("Hit Count", this.hitCount));
 		elems.add(new StatElement<AtomicLong>("Bytes Free", this.bytesFree));
-		elems.add(new StatElement<Integer>("Optimize Operation Count", Integer.valueOf(this.removeCount)));
-		elems.add(new StatElement<Integer>("Times Optimized", Integer.valueOf(this.timesOptimized)));
-		elems.add(new StatElement<Integer>("Recycle Count", Integer.valueOf(this.recycleCnt)));
-		elems.add(new StatElement<Integer>("Recycle Bin Size", Integer.valueOf(this.recycle.size())));
-		elems.add(new StatElement<Integer>("Startup Size", Integer.valueOf(this.startupSize)));
+		elems.add(new StatElement<Integer>("Optimize Operation Count", this.removeCount));
+		elems.add(new StatElement<Integer>("Times Optimized", this.timesOptimized));
+		elems.add(new StatElement<Integer>("Recycle Count", this.recycleCnt));
+		elems.add(new StatElement<Integer>("Recycle Bin Size", this.recycle.size()));
+		elems.add(new StatElement<Integer>("Startup Size", this.startupSize));
 
 		IStats sStats = super.getStatistics();
 		elems.addAll(sStats.getStatElements());
@@ -1246,26 +1259,18 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		@Override
 		public int compare(IndexedDiskElementDescriptor ded1, IndexedDiskElementDescriptor ded2)
 		{
-			if (ded1.pos < ded2.pos)
-			{
-				return -1;
-			}
-			else if (ded1.pos == ded2.pos)
-			{
-				return 0;
-			}
-			else
-			{
-				return 1;
-			}
+			return Long.compare(ded1.pos, ded2.pos);
 		}
 	}
 
+	/**
+	 * 根据缓存数据的大小进行LRU算法的执行（单位：KB）
+	 */
 	public class LRUMapSizeLimited extends AbstractLRUMap<K, IndexedDiskElementDescriptor>
 	{
 
-		private AtomicInteger contentSize;
-		private int maxSize;
+		private AtomicInteger contentSize; // 当前存储的数据大小，向上取整 单位：kb
+		private int maxSize; // 能存储的数据最大值 单位：kb
 
 		public LRUMapSizeLimited()
 		{
@@ -1358,6 +1363,9 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		}
 	}
 
+	/**
+	 * 根据缓存的数量进行LRU算法的执行
+	 */
 	public class LRUMapCountLimited extends LRUMap<K, IndexedDiskElementDescriptor> implements Serializable
 	{
 
