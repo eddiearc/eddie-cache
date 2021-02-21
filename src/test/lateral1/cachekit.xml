@@ -35,6 +35,5 @@
 				<property name="UdpDiscoveryEnabled" value="true" />
 			</attributes>
 		</kit>
-		
 	</kits>
 </configuration>

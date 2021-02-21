@@ -17,6 +17,9 @@ import org.apache.commons.logging.LogFactory;
 import pro.eddiecache.core.model.IElementSerializer;
 import pro.eddiecache.utils.serialization.StandardSerializer;
 
+/**
+ * @author eddie
+ */
 public class BlockDisk
 {
 	private static final Log log = LogFactory.getLog(BlockDisk.class);
@@ -67,6 +70,12 @@ public class BlockDisk
 		this.elementSerializer = elementSerializer;
 	}
 
+	/**
+	 * 分配指定个数的Block
+	 *
+	 * @param numBlocksNeeded 需要几个Block
+	 * @return 返回一个分配的Block列表
+	 */
 	private int[] allocateBlocks(int numBlocksNeeded)
 	{
 		assert numBlocksNeeded >= 1;
@@ -77,9 +86,9 @@ public class BlockDisk
 			Integer emptyBlock = emptyBlocks.poll();
 			if (emptyBlock == null)
 			{
-				emptyBlock = Integer.valueOf(numberOfBlocks.getAndIncrement());
+				emptyBlock = numberOfBlocks.getAndIncrement();
 			}
-			blocks[i] = emptyBlock.intValue();
+			blocks[i] = emptyBlock;
 		}
 
 		return blocks;
@@ -116,6 +125,7 @@ public class BlockDisk
 			int length = Math.min(maxChunkSize, data.length - offset);
 			headerBuffer.putInt(length);
 
+			// 截取应该存到该Block中对应的数据
 			ByteBuffer dataBuffer = ByteBuffer.wrap(data, offset, length);
 
 			long position = calculateByteOffsetForBlockAsLong(blocks[i]);
@@ -158,6 +168,11 @@ public class BlockDisk
 		return chunks;
 	}
 
+	/**
+	 * 根据Block列表，获取对应的对象
+	 *
+	 * @param blockNumbers Block列表
+	 */
 	protected <T extends Serializable> T read(int[] blockNumbers) throws IOException, ClassNotFoundException
 	{
 		byte[] data = null;
@@ -187,6 +202,12 @@ public class BlockDisk
 		return elementSerializer.deSerialize(data, null);
 	}
 
+	/**
+	 * 读取一个Block的内容
+	 *
+	 * @param block Block文件偏移量
+	 * @return 读取的内容
+	 */
 	private byte[] readBlock(int block) throws IOException
 	{
 		int datalen = 0;
@@ -233,7 +254,7 @@ public class BlockDisk
 		{
 			for (short i = 0; i < blocksToFree.length; i++)
 			{
-				emptyBlocks.offer(Integer.valueOf(blocksToFree[i]));
+				emptyBlocks.offer(blocksToFree[i]);
 			}
 		}
 	}
@@ -248,6 +269,11 @@ public class BlockDisk
 		return (long) block * blockSizeBytes;
 	}
 
+	/**
+	 * 计算存储此数据，需要几个Block
+	 * @param data 数据
+	 * @return 需要的Block数量
+	 */
 	protected int calculateTheNumberOfBlocksNeeded(byte[] data)
 	{
 		int dataLength = data.length;
