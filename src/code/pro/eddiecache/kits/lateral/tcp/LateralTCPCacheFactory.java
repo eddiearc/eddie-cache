@@ -163,6 +163,13 @@ public class LateralTCPCacheFactory extends AbstractKitCacheFactory
 		}
 	}
 
+	/**
+	 *
+	 * @param attr
+	 * @param <K>
+	 * @param <V>
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public <K, V> ICacheServiceRemote<K, V> getCacheServiceRemoteInstance(ITCPLateralCacheAttributes attr)
 	{
@@ -267,6 +274,15 @@ public class LateralTCPCacheFactory extends AbstractKitCacheFactory
 		}
 	}
 
+	/**
+	 * 创建端口监听器
+	 *
+	 * @param attr 配置文件
+	 * @param cacheMgr 缓存管理器
+	 * @param <K> Key值类型
+	 * @param <V> Value值类型
+	 * @return 监听器类
+	 */
 	private <K, V> ILateralCacheListener<K, V> createListener(ITCPLateralCacheAttributes attr,
 			IContextCacheManager cacheMgr)
 	{
@@ -287,6 +303,9 @@ public class LateralTCPCacheFactory extends AbstractKitCacheFactory
 		return listener;
 	}
 
+	/**
+	 * 创建发现服务
+	 */
 	private synchronized <K, V> UDPDiscoveryService createDiscoveryService(ITCPLateralCacheAttributes attr,
                                                                            LateralCacheAsyncFacade<K, V> lcaf, IContextCacheManager cacheMgr, ICacheEventWrapper cacheEventWrapper,
                                                                            IElementSerializer elementSerializer)

@@ -108,6 +108,19 @@ public class ContextCacheConfigurator
 		return parseCache(props, ccm, cacheName, kits, cca, CACHE_PREFIX);
 	}
 
+	/**
+	 * 解析出对应Cache实例
+	 *
+	 * @param props
+	 * @param ccm
+	 * @param cacheName
+	 * @param kits
+	 * @param cca
+	 * @param cachePrefix
+	 * @param <K>
+	 * @param <V>
+	 * @return
+	 */
 	protected <K, V> ContextCache<K, V> parseCache(Properties props, ContextCacheManager ccm, String cacheName,
 			String kits, IContextCacheAttributes cca, String cachePrefix)
 	{

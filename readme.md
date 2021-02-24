@@ -11,8 +11,8 @@
 
 ## 运行与测试
 `src/test`目录中：
-- paxos1，paxos2，paxos3用于测试Disk组件与Paxos组件
-- test1和test2用于测试Disk组件与Lateral组件
+- paxos1, paxos2, paxos3用于测试Disk组件与Paxos组件
+- lateral1, lateral2用于测试Disk组件与Lateral组件
 
 ## 缓存实例相关原理
 - DiskCache
