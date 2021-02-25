@@ -211,6 +211,9 @@ public class UDPDiscoveryReceiver implements Runnable, IShutdownObserver
 		return cnt;
 	}
 
+	/**
+	 * 注册发现的UDP组播传输信息的相关执行器
+	 */
 	public class MessageHandler implements Runnable
 	{
 		private UDPDiscoveryMessage message = null;
@@ -271,7 +274,6 @@ public class UDPDiscoveryReceiver implements Runnable, IShutdownObserver
 					log.debug("Message is a Request Broadcast, will have the service handle it.");
 				}
 				service.serviceRequestBroadcast();
-				return;
 			}
 			else if (message.getMessageType() == UDPDiscoveryMessage.BroadcastType.REMOVE)
 			{
@@ -281,7 +283,7 @@ public class UDPDiscoveryReceiver implements Runnable, IShutdownObserver
 				}
 				service.removeDiscoveredService(discoveredService);
 			}
-			else
+			else if (message.getMessageType() == UDPDiscoveryMessage.BroadcastType.PASSIVE)
 			{
 				service.addOrUpdateService(discoveredService);
 			}

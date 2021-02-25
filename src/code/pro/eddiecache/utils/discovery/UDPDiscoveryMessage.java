@@ -9,10 +9,11 @@ public class UDPDiscoveryMessage implements Serializable
 
 	public enum BroadcastType
 	{
+		// 新增
 		PASSIVE,
-
+		// 请求广播
 		REQUEST,
-
+		// 移除
 		REMOVE
 	}
 

@@ -35,6 +35,13 @@ public class LateralTCPDiscoveryListener implements IDiscoveryListener
 		this.cacheManager = cacheManager;
 	}
 
+	/**
+	 * 添加新的Lateral缓存组件
+	 *
+	 * @param cacheName 缓存名称
+	 * @param facade 缓存组件
+	 * @return 是否是新的实例
+	 */
 	public synchronized boolean addAsyncFacade(String cacheName, LateralCacheAsyncFacade<?, ?> facade)
 	{
 		boolean isNew = !containsAsyncFacade(cacheName);
@@ -44,11 +51,21 @@ public class LateralTCPDiscoveryListener implements IDiscoveryListener
 		return isNew;
 	}
 
+	/**
+	 * 是否包含包含该Lateral缓存实例
+	 *
+	 * @param cacheName 缓存名称
+	 */
 	public boolean containsAsyncFacade(String cacheName)
 	{
 		return facades.containsKey(cacheName);
 	}
 
+	/**
+	 * 缓存实例中是否包含该async
+	 *
+	 * @param cacheName 缓存名
+	 */
 	public <K, V> boolean containsAsync(String cacheName, LateralCacheAsync<K, V> async)
 	{
 		@SuppressWarnings("unchecked")
@@ -127,6 +144,11 @@ public class LateralTCPDiscoveryListener implements IDiscoveryListener
 		}
 	}
 
+	/**
+	 * 添加已经被发现的远程实例
+	 *
+	 * @param service 远程实例
+	 */
 	@Override
 	public void addDiscoveredService(DiscoveredService service)
 	{

@@ -212,9 +212,8 @@ public abstract class AbstractCacheEventQueue<K, V> implements ICacheEventQueue<
 		@Override
 		public String toString()
 		{
-			StringBuilder sb = new StringBuilder("PutEvent for key: ").append(ice.getKey()).append(" value: ")
-					.append(ice.getVal());
-			return sb.toString();
+			return "PutEvent for key: " + ice.getKey() + " value: " +
+					ice.getVal();
 		}
 
 	}

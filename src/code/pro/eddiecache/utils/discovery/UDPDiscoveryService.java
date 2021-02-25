@@ -120,6 +120,11 @@ public class UDPDiscoveryService implements IShutdownObserver, IRequireScheduler
 		}
 	}
 
+	/**
+	 * 将缓存名为cacheName的实例添加进远程服务发现中
+	 *
+	 * @param cacheName 缓存名
+	 */
 	public void addParticipatingCacheName(String cacheName)
 	{
 		cacheNames.add(cacheName);

@@ -25,6 +25,11 @@ import pro.eddiecache.core.stats.Stats;
 import pro.eddiecache.kits.AbstractKitCache;
 import pro.eddiecache.kits.KitCacheAttributes;
 
+/**
+ * @author eddie
+ *
+ * LateralCache异步处理类
+ */
 public class LateralCacheAsync<K, V> extends AbstractKitCache<K, V>
 {
 	private static final Log log = LogFactory.getLog(LateralCacheAsync.class);
@@ -59,6 +64,11 @@ public class LateralCacheAsync<K, V> extends AbstractKitCache<K, V>
 		}
 	}
 
+	/**
+	 * 更新缓存值，通过事件异步处理
+	 *
+	 * @param ce 被更新的对象（K-V）
+	 */
 	@Override
 	public void update(ICacheElement<K, V> ce) throws IOException
 	{
@@ -74,6 +84,11 @@ public class LateralCacheAsync<K, V> extends AbstractKitCache<K, V>
 		}
 	}
 
+	/**
+	 * 通过key得到对应的对象，直接进行读取（无需异步）
+	 *
+	 * @param key 键
+	 */
 	@Override
 	public ICacheElement<K, V> get(K key)
 	{
@@ -105,6 +120,11 @@ public class LateralCacheAsync<K, V> extends AbstractKitCache<K, V>
 		return null;
 	}
 
+	/**
+	 * 批量获取K-V信息
+	 *
+	 * @param keys 批量的key值
+	 */
 	@Override
 	public Map<K, ICacheElement<K, V>> getMultiple(Set<K> keys)
 	{
@@ -126,6 +146,11 @@ public class LateralCacheAsync<K, V> extends AbstractKitCache<K, V>
 		return elements;
 	}
 
+	/**
+	 * 根据字符串正则匹配获取对应的K-V信息
+	 *
+	 * @param pattern 正则匹配
+	 */
 	@Override
 	public Map<K, ICacheElement<K, V>> getMatching(String pattern)
 	{
@@ -282,14 +307,12 @@ public class LateralCacheAsync<K, V> extends AbstractKitCache<K, V>
 		IStats stats = new Stats();
 		stats.setTypeName("Lateral Cache Async");
 
-		ArrayList<IStatElement<?>> elems = new ArrayList<IStatElement<?>>();
-
 		IStats eqStats = this.eventQueue.getStatistics();
-		elems.addAll(eqStats.getStatElements());
+		ArrayList<IStatElement<?>> elems = new ArrayList<IStatElement<?>>(eqStats.getStatElements());
 
-		elems.add(new StatElement<Integer>("Get Count", Integer.valueOf(this.getCount)));
-		elems.add(new StatElement<Integer>("Remove Count", Integer.valueOf(this.removeCount)));
-		elems.add(new StatElement<Integer>("Put Count", Integer.valueOf(this.putCount)));
+		elems.add(new StatElement<Integer>("Get Count", this.getCount));
+		elems.add(new StatElement<Integer>("Remove Count", this.removeCount));
+		elems.add(new StatElement<Integer>("Put Count", this.putCount));
 		elems.add(new StatElement<KitCacheAttributes>("Attributes", cache.getKitCacheAttributes()));
 
 		stats.setStatElements(elems);
@@ -300,10 +323,8 @@ public class LateralCacheAsync<K, V> extends AbstractKitCache<K, V>
 	@Override
 	public String toString()
 	{
-		StringBuilder sb = new StringBuilder();
-		sb.append(" LateralCacheAsync ");
-		sb.append(" Status = " + this.getStatus());
-		sb.append(" cache = [" + cache.toString() + "]");
-		return sb.toString();
+		return " LateralCacheAsync " +
+				" Status = " + this.getStatus() +
+				" cache = [" + cache.toString() + "]";
 	}
 }

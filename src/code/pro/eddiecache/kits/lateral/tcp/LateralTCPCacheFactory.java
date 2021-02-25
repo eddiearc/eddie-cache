@@ -88,6 +88,14 @@ public class LateralTCPCacheFactory extends AbstractKitCacheFactory
 
 	}
 
+	/**
+	 * 根据UDP组播的远程缓存信息进行包装，生成新的异步处理类
+	 *
+	 * @param attr 远程发过来的相关信息
+	 * @param cacheEventWrapper 缓存包装类
+	 * @param elementSerializer 对象序列器
+	 * @return
+	 */
 	protected <K, V> LateralCacheAsync<K, V> createCacheAsync(ITCPLateralCacheAttributes attr,
 			ICacheEventWrapper cacheEventWrapper, IElementSerializer elementSerializer)
 	{
