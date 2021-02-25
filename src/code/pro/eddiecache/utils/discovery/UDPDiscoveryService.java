@@ -16,6 +16,9 @@ import pro.eddiecache.core.model.IRequireScheduler;
 import pro.eddiecache.core.model.IShutdownObserver;
 import pro.eddiecache.utils.net.HostNameUtil;
 
+/**
+ * @author eddie
+ */
 public class UDPDiscoveryService implements IShutdownObserver, IRequireScheduler
 {
 	private static final Log log = LogFactory.getLog(UDPDiscoveryService.class);
@@ -201,9 +204,7 @@ public class UDPDiscoveryService implements IShutdownObserver, IRequireScheduler
 
 	protected ArrayList<String> getCacheNames()
 	{
-		ArrayList<String> names = new ArrayList<String>();
-		names.addAll(cacheNames);
-		return names;
+		return new ArrayList<String>(cacheNames);
 	}
 
 	public void setUdpDiscoveryAttributes(UDPDiscoveryAttributes attr)
@@ -280,9 +281,7 @@ public class UDPDiscoveryService implements IShutdownObserver, IRequireScheduler
 
 	public Set<IDiscoveryListener> getCopyOfDiscoveryListeners()
 	{
-		Set<IDiscoveryListener> copy = new HashSet<IDiscoveryListener>();
-		copy.addAll(getDiscoveryListeners());
-		return copy;
+		return new HashSet<IDiscoveryListener>(getDiscoveryListeners());
 	}
 
 	public boolean addDiscoveryListener(IDiscoveryListener listener)

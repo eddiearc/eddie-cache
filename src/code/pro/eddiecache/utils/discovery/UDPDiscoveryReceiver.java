@@ -84,6 +84,11 @@ public class UDPDiscoveryReceiver implements Runnable, IShutdownObserver
 		}
 	}
 
+	/**
+	 * 通过receive()方法阻塞等待
+	 *
+	 * @return UDP组播中获取的信息
+	 */
 	public Object waitForMessage() throws IOException
 	{
 		final DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
@@ -248,6 +253,9 @@ public class UDPDiscoveryReceiver implements Runnable, IShutdownObserver
 			}
 		}
 
+		/**
+		 * 处理UDP组播传递的信息
+		 */
 		private void processMessage()
 		{
 			DiscoveredService discoveredService = new DiscoveredService();

@@ -493,6 +493,13 @@ public class ContextCacheManager implements IContextCacheManager, IProvideSchedu
 		kitCaches.put(key, cache);
 	}
 
+	/**
+	 * 到哈希表中检索对应的Cache对象实例
+	 *
+	 * @param kitName 缓存类型
+	 * @param cacheName 缓存名
+	 * @return 对应缓存实例
+	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public <K, V> KitCache<K, V> getKitCache(String kitName, String cacheName)

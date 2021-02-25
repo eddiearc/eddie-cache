@@ -68,6 +68,11 @@ public class UDPDiscoverySender
 		destroy();
 	}
 
+	/**
+	 * 通过UDP组播发送相关信息
+	 *
+	 * @param message 信息
+	 */
 	public void send(UDPDiscoveryMessage message) throws IOException
 	{
 		if (this.localSocket == null)

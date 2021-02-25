@@ -148,7 +148,6 @@ public class LateralTCPDiscoveryListener implements IDiscoveryListener
 
 						if (lca.getTransmissionType() == LateralCacheAttributes.Type.TCP
 								&& !containsAsync(cacheName, serverAndPort))
-
 						{
 
 							ContextCacheManager ccm = (ContextCacheManager) cacheManager;
