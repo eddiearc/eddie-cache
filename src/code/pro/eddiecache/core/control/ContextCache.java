@@ -1142,6 +1142,7 @@ public class ContextCache<K, V> implements ICache<K, V>, IRequireScheduler
 		{
 			IElementAttributes attributes = element.getElementAttributes();
 
+			// 非持久存储的缓存对象
 			if (!attributes.getIsEternal())
 			{
 
@@ -1150,6 +1151,7 @@ public class ContextCache<K, V> implements ICache<K, V>, IRequireScheduler
 
 				final long timeFactorForMilliseconds = attributes.getTimeFactorForMilliseconds();
 
+				// 有生命长度限制
 				if (maxLifeSeconds != -1 && (timestamp - createTime) > (maxLifeSeconds * timeFactorForMilliseconds))
 				{
 					if (log.isDebugEnabled())
@@ -1164,6 +1166,7 @@ public class ContextCache<K, V> implements ICache<K, V>, IRequireScheduler
 				long idleTime = attributes.getIdleTime();
 				long lastAccessTime = attributes.getLastAccessTime();
 
+				// 有最长访问间隔限制
 				if ((idleTime != -1) && (timestamp - lastAccessTime) > idleTime * timeFactorForMilliseconds)
 				{
 					if (log.isDebugEnabled())
