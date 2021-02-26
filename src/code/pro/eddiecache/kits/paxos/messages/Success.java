@@ -26,6 +26,7 @@ public class Success implements SpecialMessage
 		return "SUCCESS " + seqNo + " " + msgId + "(" + message + ")";
 	}
 
+	@Override
 	public MessageType getMessageType()
 	{
 		return MessageType.SUCCESS;

@@ -23,6 +23,7 @@ public class NewView implements SpecialMessage
 		return "NEW_VIEW " + leader.toString() + "(" + viewNumber + ")";
 	}
 
+	@Override
 	public MessageType getMessageType()
 	{
 		return MessageType.NEW_VIEW;

@@ -3,7 +3,6 @@ package pro.eddiecache.kits.paxos.messages;
 import pro.eddiecache.kits.paxos.comm.Member;
 
 /**
- * 
  * 成员给leader回复确认
  */
 public class SuccessAck implements MessageWithSender, SpecialMessage
@@ -18,6 +17,7 @@ public class SuccessAck implements MessageWithSender, SpecialMessage
 		this.sender = sender;
 	}
 
+	@Override
 	public Member getSender()
 	{
 		return sender;
@@ -28,6 +28,7 @@ public class SuccessAck implements MessageWithSender, SpecialMessage
 		return msgId;
 	}
 
+	@Override
 	public MessageType getMessageType()
 	{
 		return MessageType.SUCCESS_ACK;

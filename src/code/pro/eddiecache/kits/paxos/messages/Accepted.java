@@ -26,6 +26,7 @@ public class Accepted implements SpecialMessage, MessageWithSender
 		sender = me;
 	}
 
+	@Override
 	public MessageType getMessageType()
 	{
 		return MessageType.ACCEPTED;
@@ -37,6 +38,7 @@ public class Accepted implements SpecialMessage, MessageWithSender
 		return "ACCEPTED " + msgId + " missing(" + missingSuccess + ") from " + sender;
 	}
 
+	@Override
 	public Member getSender()
 	{
 		return sender;

@@ -23,11 +23,13 @@ public class ViewAccepted implements SpecialMessage, MessageWithSender
 		this.sender = sender;
 	}
 
-	public MessageType getMessageType()
+	@Override
+    public MessageType getMessageType()
 	{
 		return MessageType.VIEW_ACCEPTED;
 	}
 
+	@Override
 	public Member getSender()
 	{
 		return sender;

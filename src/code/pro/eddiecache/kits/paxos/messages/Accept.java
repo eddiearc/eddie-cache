@@ -5,7 +5,7 @@ import java.io.Serializable;
 import pro.eddiecache.kits.paxos.comm.Member;
 
 /**
- * 
+ * @author eddie
  * Accept由当选的leader发出，要求成员接受消息
  */
 public class Accept implements SpecialMessage
@@ -26,6 +26,7 @@ public class Accept implements SpecialMessage
 		this.sender = sender;
 	}
 
+	@Override
 	public MessageType getMessageType()
 	{
 		return MessageType.ACCEPT;

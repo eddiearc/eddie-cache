@@ -12,6 +12,7 @@ public class Abort implements SpecialMessage
 		this.seqNo = seqNo;
 	}
 
+	@Override
 	public MessageType getMessageType()
 	{
 		return MessageType.ABORT;

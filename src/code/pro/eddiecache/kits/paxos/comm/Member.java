@@ -39,25 +39,34 @@ public class Member implements Comparable<Member>, Serializable
 		return port;
 	}
 
+	@Override
 	public int compareTo(Member other)
 	{
 
-		if (this.addressBytes[0] < other.addressBytes[0])
+		if (this.addressBytes[0] < other.addressBytes[0]) {
 			return -1;
-		if (this.addressBytes[0] > other.addressBytes[0])
+		}
+		if (this.addressBytes[0] > other.addressBytes[0]) {
 			return 1;
-		if (this.addressBytes[1] < other.addressBytes[1])
+		}
+		if (this.addressBytes[1] < other.addressBytes[1]) {
 			return -1;
-		if (this.addressBytes[1] > other.addressBytes[1])
+		}
+		if (this.addressBytes[1] > other.addressBytes[1]) {
 			return 1;
-		if (this.addressBytes[2] < other.addressBytes[2])
+		}
+		if (this.addressBytes[2] < other.addressBytes[2]) {
 			return -1;
-		if (this.addressBytes[2] > other.addressBytes[2])
+		}
+		if (this.addressBytes[2] > other.addressBytes[2]) {
 			return 1;
-		if (this.addressBytes[3] < other.addressBytes[3])
+		}
+		if (this.addressBytes[3] < other.addressBytes[3]) {
 			return -1;
-		if (this.addressBytes[3] > other.addressBytes[3])
+		}
+		if (this.addressBytes[3] > other.addressBytes[3]) {
 			return 1;
+		}
 		return port - other.port;
 	}
 

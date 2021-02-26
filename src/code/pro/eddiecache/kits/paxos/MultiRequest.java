@@ -9,6 +9,9 @@ import pro.eddiecache.kits.paxos.comm.Member;
 import pro.eddiecache.kits.paxos.comm.Tick;
 import pro.eddiecache.kits.paxos.messages.MessageWithSender;
 
+/**
+ * @author eddie
+ */
 public abstract class MultiRequest<T extends Serializable, R extends MessageWithSender>
 {
 	public static final int RESEND_INTERVAL = 1000;
