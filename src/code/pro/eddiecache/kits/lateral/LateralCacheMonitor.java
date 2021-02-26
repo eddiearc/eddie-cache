@@ -10,6 +10,9 @@ import pro.eddiecache.kits.AbstractKitCacheMonitor;
 import pro.eddiecache.kits.lateral.tcp.ITCPLateralCacheAttributes;
 import pro.eddiecache.kits.lateral.tcp.LateralTCPCacheFactory;
 
+/**
+ * @author eddie
+ */
 public class LateralCacheMonitor extends AbstractKitCacheMonitor
 {
 	private ConcurrentHashMap<String, LateralCacheAsync<?, ?>> caches;

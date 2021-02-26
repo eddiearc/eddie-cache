@@ -265,6 +265,9 @@ public class LateralCacheAsync<K, V> extends AbstractKitCache<K, V>
 		return cache.getCacheName();
 	}
 
+	/**
+	 * 修复缓存，即：用可以进行缓存操作的实例，替代只能存储事件的DaemonService
+	 */
 	public void fixCache(ICacheServiceRemote<K, V> lateral)
 	{
 		cache.fixCache(lateral);
