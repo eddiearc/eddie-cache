@@ -13,6 +13,9 @@ import org.apache.commons.logging.LogFactory;
 import pro.eddiecache.core.model.ICacheListener;
 import pro.eddiecache.core.model.ICacheObserver;
 
+/**
+ * @author eddie
+ */
 public class CacheWatchRepairable implements ICacheObserver
 {
 	private static final Log log = LogFactory.getLog(CacheWatchRepairable.class);

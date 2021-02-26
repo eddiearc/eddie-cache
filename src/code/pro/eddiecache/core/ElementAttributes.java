@@ -11,24 +11,55 @@ public class ElementAttributes implements IElementAttributes
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 是否持久化至磁盘中
+	 */
 	private boolean IS_SPOOL = true;
 
+	/**
+	 * 是否是线性组件
+	 */
 	private boolean IS_LATERAL = true;
 
+	/**
+	 * 是否远程
+	 */
 	private boolean IS_REMOTE = true;
 
+	/**
+	 * 节点是否持久性的，true： false：有超时时间（maxLife）
+	 */
 	private boolean IS_ETERNAL = true;
 
+	/**
+	 * 这个缓存对象的生命周期时长
+	 */
 	private long maxLife = -1;
 
+	/**
+	 * 这个缓存对象的最大的空闲时间（没有被访问的时间的允许最大值）
+	 */
 	private long maxIdleTime = -1;
 
+	/**
+	 * 缓存占用对象的大小
+	 */
 	private int size = 0;
 
+	/**
+	 * 创建缓存的时间
+	 */
 	private long createTime = 0;
 
+	/**
+	 * 最后一次访问时间
+	 */
 	private long lastAccessTime = 0;
 
+	/**
+	 * 这个缓存对象的执行器列表
+	 * transient：不会被序列号
+	 */
 	private transient ArrayList<IElementEventHandler> eventHandlers;
 
 	private long timeFactor = 1000;
@@ -50,6 +81,11 @@ public class ElementAttributes implements IElementAttributes
 		size = attr.size;
 	}
 
+	/**
+	 * 设置对象的过期时间
+	 *
+	 * @param mls 单位 秒
+	 */
 	@Override
 	public void setMaxLife(long mls)
 	{
@@ -86,6 +122,9 @@ public class ElementAttributes implements IElementAttributes
 		return createTime;
 	}
 
+	/**
+	 * 将对象的新增时间戳设置为当前时间
+	 */
 	public void setCreateTime()
 	{
 		createTime = System.currentTimeMillis();
@@ -97,6 +136,11 @@ public class ElementAttributes implements IElementAttributes
 		return this.maxIdleTime;
 	}
 
+	/**
+	 * 计算剩余存活时间
+	 *
+	 * @return 剩余存活时间  单位 秒
+	 */
 	@Override
 	public long getTimeToLiveSeconds()
 	{
@@ -215,20 +259,17 @@ public class ElementAttributes implements IElementAttributes
 	@Override
 	public String toString()
 	{
-		StringBuilder sb = new StringBuilder();
 
-		sb.append("[ IS_LATERAL = ").append(IS_LATERAL);
-		sb.append(", IS_SPOOL = ").append(IS_SPOOL);
-		sb.append(", IS_REMOTE = ").append(IS_REMOTE);
-		sb.append(", IS_ETERNAL = ").append(IS_ETERNAL);
-		sb.append(", MaxLifeSeconds = ").append(this.getMaxLife());
-		sb.append(", IdleTime = ").append(this.getIdleTime());
-		sb.append(", CreateTime = ").append(this.getCreateTime());
-		sb.append(", LastAccessTime = ").append(this.getLastAccessTime());
-		sb.append(", getTimeToLiveSeconds() = ").append(String.valueOf(getTimeToLiveSeconds()));
-		sb.append(", createTime = ").append(String.valueOf(createTime)).append(" ]");
-
-		return sb.toString();
+		return "[ IS_LATERAL = " + IS_LATERAL +
+				", IS_SPOOL = " + IS_SPOOL +
+				", IS_REMOTE = " + IS_REMOTE +
+				", IS_ETERNAL = " + IS_ETERNAL +
+				", MaxLifeSeconds = " + this.getMaxLife() +
+				", IdleTime = " + this.getIdleTime() +
+				", CreateTime = " + this.getCreateTime() +
+				", LastAccessTime = " + this.getLastAccessTime() +
+				", getTimeToLiveSeconds() = " + String.valueOf(getTimeToLiveSeconds()) +
+				", createTime = " + String.valueOf(createTime) + " ]";
 	}
 
 	@Override
