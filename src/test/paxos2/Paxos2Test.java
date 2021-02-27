@@ -10,9 +10,9 @@ public class Paxos2Test
 	{
 
 		CacheKit.setConfigFilename("/paxos2/cachekit.xml");
-		CacheKitAccess cacheKitAccess = CacheKit.getInstance("paxos2");
+		CacheKitAccess cacheKitAccess = CacheKit.getInstance("default");
 		//main线程休眠，等待服务发现和注册的完成
-		Thread.sleep(60000);
+		Thread.sleep(10000);
 
 		// 测试节点的数据读取
 		System.out.println("缓存对象" + cacheKitAccess.get("id0"));
