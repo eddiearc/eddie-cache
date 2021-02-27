@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author eddie
+ */
 public class WaitingTimer
 {
 	private final HashMap<Long, Semaphore> waitingForResponse = new HashMap<Long, Semaphore>();

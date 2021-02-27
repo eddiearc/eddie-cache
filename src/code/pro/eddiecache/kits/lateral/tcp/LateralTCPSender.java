@@ -12,6 +12,9 @@ import org.apache.commons.logging.LogFactory;
 import pro.eddiecache.io.IOClassLoaderWarpper;
 import pro.eddiecache.kits.lateral.LateralElementDescriptor;
 
+/**
+ * @author eddie
+ */
 public class LateralTCPSender
 {
 	private static final Log log = LogFactory.getLog(LateralTCPSender.class);
