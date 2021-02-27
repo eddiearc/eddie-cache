@@ -17,6 +17,9 @@ import pro.eddiecache.core.model.IShutdownObserver;
 import pro.eddiecache.io.IOClassLoaderWarpper;
 import pro.eddiecache.utils.threadpool.CacheKitThreadFactory;
 
+/**
+ * @author eddie
+ */
 public class UDPDiscoveryReceiver implements Runnable, IShutdownObserver
 {
 	private static final Log log = LogFactory.getLog(UDPDiscoveryReceiver.class);
@@ -87,7 +90,7 @@ public class UDPDiscoveryReceiver implements Runnable, IShutdownObserver
 	/**
 	 * 通过receive()方法阻塞等待
 	 *
-	 * @return UDP组播中获取的信息
+	 * @return 从UDP组播中获取的信息
 	 */
 	public Object waitForMessage() throws IOException
 	{

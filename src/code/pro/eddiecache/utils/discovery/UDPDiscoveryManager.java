@@ -49,6 +49,10 @@ public class UDPDiscoveryManager
 
 			cacheMgr.registerShutdownObserver(service);
 
+			/**
+			 * 如果本地的缓存是提供数据的主缓存（可以提供数据的缓存）
+			 * 则使用一个定时线程池，进行定时发送注册信息 15s
+			 */
 			if (cacheMgr instanceof IProvideScheduler)
 			{
 				service.setScheduledExecutorService(((IProvideScheduler) cacheMgr).getScheduledExecutorService());
