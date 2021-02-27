@@ -397,7 +397,7 @@ public class ContextCache<K, V> implements ICache<K, V>, IRequireScheduler
 								{
 									element = kitCache.get(key);
 								}
-								catch (IOException e)
+								catch (IOException ignored)
 								{
 
 								}

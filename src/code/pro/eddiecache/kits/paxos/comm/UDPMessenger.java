@@ -11,6 +11,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import pro.eddiecache.kits.paxos.PaxosUtils;
 
+/**
+ * @author eddie
+ */
 public class UDPMessenger implements CommLayer
 {
 	public static final int BUFFER_SIZE = 128 * 1024;

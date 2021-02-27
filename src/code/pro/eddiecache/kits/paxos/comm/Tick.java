@@ -2,6 +2,9 @@ package pro.eddiecache.kits.paxos.comm;
 
 import java.io.Serializable;
 
+/**
+ * @author eddie
+ */
 public class Tick implements Serializable
 {
 
