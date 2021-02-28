@@ -310,6 +310,9 @@ public class LateralTCPReceiver<K, V> implements ILateralCacheListener<K, V>, IS
 		return tcpLateralCacheAttributes;
 	}
 
+	/**
+	 * 用于监听TCP连接的线程
+	 */
 	public class ListenerReceiverThread extends Thread
 	{
 		private final ServerSocket serverSocket;

@@ -124,6 +124,7 @@ public class LateralTCPSender
 
 		synchronized (this.getLock)
 		{
+			// writeObjectUnShared： 后置对该对象的修改都不会影响到流中的数据
 			oos.writeUnshared(led);
 			oos.flush();
 		}

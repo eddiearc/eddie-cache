@@ -54,6 +54,7 @@ public class LateralCacheAsync<K, V> extends AbstractKitCache<K, V>
 		}
 
 		CacheEventQueueFactory<K, V> factory = new CacheEventQueueFactory<K, V>();
+		// 将cache进行包装
 		this.eventQueue = factory.createCacheEventQueue(new CacheKitWrapper<K, V>(cache), CacheInfo.listenerId,
 				cache.getCacheName(), cache.getKitCacheAttributes().getEventQueuePoolName(),
 				cache.getKitCacheAttributes().getEventQueueType());

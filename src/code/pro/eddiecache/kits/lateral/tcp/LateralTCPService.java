@@ -18,6 +18,9 @@ import pro.eddiecache.core.model.ICacheServiceRemote;
 import pro.eddiecache.kits.lateral.LateralCommand;
 import pro.eddiecache.kits.lateral.LateralElementDescriptor;
 
+/**
+ * @author eddie
+ */
 public class LateralTCPService<K, V> implements ICacheServiceRemote<K, V>
 {
 	private static final Log log = LogFactory.getLog(LateralTCPService.class);

@@ -77,12 +77,12 @@ public class PooledCacheEventQueue<K, V> extends AbstractCacheEventQueue<K, V>
 		if (pool.getQueue() != null)
 		{
 			BlockingQueue<Runnable> bb = pool.getQueue();
-			elems.add(new StatElement<Integer>("Queue Size", Integer.valueOf(bb.size())));
-			elems.add(new StatElement<Integer>("Queue Capacity", Integer.valueOf(bb.remainingCapacity())));
+			elems.add(new StatElement<Integer>("Queue Size", bb.size()));
+			elems.add(new StatElement<Integer>("Queue Capacity", bb.remainingCapacity()));
 		}
 
-		elems.add(new StatElement<Integer>("Pool Size", Integer.valueOf(pool.getPoolSize())));
-		elems.add(new StatElement<Integer>("Maximum Pool Size", Integer.valueOf(pool.getMaximumPoolSize())));
+		elems.add(new StatElement<Integer>("Pool Size", pool.getPoolSize()));
+		elems.add(new StatElement<Integer>("Maximum Pool Size", pool.getMaximumPoolSize()));
 
 		stats.setStatElements(elems);
 

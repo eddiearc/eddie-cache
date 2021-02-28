@@ -6,6 +6,9 @@ import org.apache.commons.logging.LogFactory;
 import pro.eddiecache.core.model.ICacheEventQueue;
 import pro.eddiecache.core.model.ICacheListener;
 
+/**
+ * @author eddie
+ */
 public class CacheEventQueueFactory<K, V>
 {
 	private static final Log log = LogFactory.getLog(CacheEventQueueFactory.class);

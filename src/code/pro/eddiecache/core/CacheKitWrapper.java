@@ -9,6 +9,10 @@ import pro.eddiecache.core.model.ICache;
 import pro.eddiecache.core.model.ICacheElement;
 import pro.eddiecache.core.model.ICacheListener;
 
+/**
+ * @author eddie
+ * @description 用于LateralCache的包装，实际访问了LateralCache的方法
+ */
 public class CacheKitWrapper<K, V> implements ICacheListener<K, V>
 {
 	private static final Log log = LogFactory.getLog(CacheKitWrapper.class);
