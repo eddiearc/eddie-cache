@@ -18,6 +18,9 @@ import pro.eddiecache.core.memory.util.MemoryElementDescriptor;
 import pro.eddiecache.core.model.ICacheElement;
 import pro.eddiecache.core.stats.IStats;
 
+/**
+ * @author eddie
+ */
 public class LinkedHashMapLRUMemoryCache<K, V> extends AbstractMemoryCache<K, V>
 {
 	private static final Log log = LogFactory.getLog(LRUMemoryCache.class);

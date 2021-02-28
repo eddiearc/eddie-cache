@@ -6,6 +6,9 @@ import pro.eddiecache.core.memory.AbstractDoubleLinkedListMemoryCache;
 import pro.eddiecache.core.memory.util.MemoryElementDescriptor;
 import pro.eddiecache.core.model.ICacheElement;
 
+/**
+ * @author eddie
+ */
 public class LRUMemoryCache<K, V> extends AbstractDoubleLinkedListMemoryCache<K, V>
 {
 	@Override
