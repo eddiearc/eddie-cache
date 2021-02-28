@@ -21,10 +21,16 @@ import pro.eddiecache.kits.KitCache;
 import pro.eddiecache.kits.KitCacheAttributes;
 import pro.eddiecache.kits.lateral.tcp.TCPLateralCacheAttributes;
 
+/**
+ * @author eddie
+ */
 public class LateralCacheAsyncFacade<K, V> extends AbstractKitCache<K, V>
 {
 	private static final Log log = LogFactory.getLog(LateralCacheAsyncFacade.class);
 
+	/**
+	 * 用于存放远程实例，本类的方法都间接调用了async的update get remove等操作
+	 */
 	public LateralCacheAsync<K, V>[] asyncs;
 
 	private final String cacheName;
@@ -46,19 +52,16 @@ public class LateralCacheAsyncFacade<K, V> extends AbstractKitCache<K, V>
 
 	public boolean containsAsync(LateralCacheAsync<K, V> async)
 	{
-		for (int i = 0; i < asyncs.length; i++)
-		{
-			//			if (async.equals(asyncs[i]))
-			//			{
-			//				return true;
-			//			}
-			//			
+		for (LateralCacheAsync<K, V> kvLateralCacheAsync : asyncs) {
+//			if (async.equals(kvLateralCacheAsync)) {
+//				return true;
+//			}
+
 			TCPLateralCacheAttributes attr1 = (TCPLateralCacheAttributes) async.getKitCacheAttributes();
 
-			TCPLateralCacheAttributes attr2 = (TCPLateralCacheAttributes) asyncs[i].getKitCacheAttributes();
+			TCPLateralCacheAttributes attr2 = (TCPLateralCacheAttributes) kvLateralCacheAsync.getKitCacheAttributes();
 
-			if (attr1.getTcpServer().equals(attr2.getTcpServer()))
-			{
+			if (attr1.getTcpServer().equals(attr2.getTcpServer())) {
 				return true;
 			}
 
@@ -68,13 +71,11 @@ public class LateralCacheAsyncFacade<K, V> extends AbstractKitCache<K, V>
 
 	public boolean containsAsync(String tcpServer)
 	{
-		for (int i = 0; i < asyncs.length; i++)
-		{
+		for (LateralCacheAsync<K, V> async : asyncs) {
 
-			TCPLateralCacheAttributes attr = (TCPLateralCacheAttributes) asyncs[i].getKitCacheAttributes();
+			TCPLateralCacheAttributes attr = (TCPLateralCacheAttributes) async.getKitCacheAttributes();
 
-			if (tcpServer.equals(attr.getTcpServer()))
-			{
+			if (tcpServer.equals(attr.getTcpServer())) {
 				return true;
 			}
 
@@ -198,7 +199,7 @@ public class LateralCacheAsyncFacade<K, V> extends AbstractKitCache<K, V>
 	}
 
 	@Override
-	public void update(ICacheElement<K, V> ce) throws IOException
+	public void update(ICacheElement<K, V> ce)
 	{
 		if (log.isDebugEnabled())
 		{
@@ -206,9 +207,8 @@ public class LateralCacheAsyncFacade<K, V> extends AbstractKitCache<K, V>
 		}
 		try
 		{
-			for (int i = 0; i < asyncs.length; i++)
-			{
-				asyncs[i].update(ce);
+			for (LateralCacheAsync<K, V> async : asyncs) {
+				async.update(ce);
 			}
 		}
 		catch (Exception ex)
@@ -220,19 +220,14 @@ public class LateralCacheAsyncFacade<K, V> extends AbstractKitCache<K, V>
 	@Override
 	public ICacheElement<K, V> get(K key)
 	{
-		for (int i = 0; i < asyncs.length; i++)
-		{
-			try
-			{
-				ICacheElement<K, V> obj = asyncs[i].get(key);
+		for (LateralCacheAsync<K, V> async : asyncs) {
+			try {
+				ICacheElement<K, V> obj = async.get(key);
 
-				if (obj != null)
-				{
+				if (obj != null) {
 					return obj;
 				}
-			}
-			catch (Exception ex)
-			{
+			} catch (Exception ex) {
 				log.error("Fail to get", ex);
 			}
 		}
@@ -264,14 +259,10 @@ public class LateralCacheAsyncFacade<K, V> extends AbstractKitCache<K, V>
 	public Map<K, ICacheElement<K, V>> getMatching(String pattern)
 	{
 		Map<K, ICacheElement<K, V>> elements = new HashMap<K, ICacheElement<K, V>>();
-		for (int i = 0; i < asyncs.length; i++)
-		{
-			try
-			{
-				elements.putAll(asyncs[i].getMatching(pattern));
-			}
-			catch (Exception ex)
-			{
+		for (LateralCacheAsync<K, V> async : asyncs) {
+			try {
+				elements.putAll(async.getMatching(pattern));
+			} catch (Exception ex) {
 				log.error("Fail to get", ex);
 			}
 		}
@@ -282,14 +273,10 @@ public class LateralCacheAsyncFacade<K, V> extends AbstractKitCache<K, V>
 	public Set<K> getKeySet() throws IOException
 	{
 		HashSet<K> allKeys = new HashSet<K>();
-		for (int i = 0; i < asyncs.length; i++)
-		{
-			KitCache<K, V> kit = asyncs[i];
-			if (kit != null)
-			{
+		for (KitCache<K, V> kit : asyncs) {
+			if (kit != null) {
 				Set<K> keys = kit.getKeySet();
-				if (keys != null)
-				{
+				if (keys != null) {
 					allKeys.addAll(keys);
 				}
 			}
@@ -302,9 +289,8 @@ public class LateralCacheAsyncFacade<K, V> extends AbstractKitCache<K, V>
 	{
 		try
 		{
-			for (int i = 0; i < asyncs.length; i++)
-			{
-				asyncs[i].remove(key);
+			for (LateralCacheAsync<K, V> async : asyncs) {
+				async.remove(key);
 			}
 		}
 		catch (Exception ex)
@@ -319,9 +305,8 @@ public class LateralCacheAsyncFacade<K, V> extends AbstractKitCache<K, V>
 	{
 		try
 		{
-			for (int i = 0; i < asyncs.length; i++)
-			{
-				asyncs[i].removeAll();
+			for (LateralCacheAsync<K, V> async : asyncs) {
+				async.removeAll();
 			}
 		}
 		catch (Exception ex)
@@ -341,9 +326,8 @@ public class LateralCacheAsyncFacade<K, V> extends AbstractKitCache<K, V>
 				listener = null;
 			}
 
-			for (int i = 0; i < asyncs.length; i++)
-			{
-				asyncs[i].dispose();
+			for (LateralCacheAsync<K, V> async : asyncs) {
+				async.dispose();
 			}
 		}
 		catch (Exception ex)
@@ -445,7 +429,7 @@ public class LateralCacheAsyncFacade<K, V> extends AbstractKitCache<K, V>
 
 		if (asyncs != null)
 		{
-			elems.add(new StatElement<Integer>("Number of Async", Integer.valueOf(asyncs.length)));
+			elems.add(new StatElement<Integer>("Number of Async", asyncs.length));
 
 			for (LateralCacheAsync<K, V> async : asyncs)
 			{
