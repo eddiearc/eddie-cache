@@ -70,9 +70,9 @@ public class PooledCacheEventQueue<K, V> extends AbstractCacheEventQueue<K, V>
 
 		ArrayList<IStatElement<?>> elems = new ArrayList<IStatElement<?>>();
 
-		elems.add(new StatElement<Boolean>("Working", Boolean.valueOf(super.isWorking())));
-		elems.add(new StatElement<Boolean>("Alive", Boolean.valueOf(this.isAlive())));
-		elems.add(new StatElement<Boolean>("Empty", Boolean.valueOf(this.isEmpty())));
+		elems.add(new StatElement<Boolean>("Working", super.isWorking()));
+		elems.add(new StatElement<Boolean>("Alive", this.isAlive()));
+		elems.add(new StatElement<Boolean>("Empty", this.isEmpty()));
 
 		if (pool.getQueue() != null)
 		{
