@@ -152,6 +152,7 @@ public class LateralTCPDiscoveryListener implements IDiscoveryListener
 	@Override
 	public void addDiscoveredService(DiscoveredService service)
 	{
+		// 通过该地址和端口，传输的缓存实例列表regions
 		ArrayList<String> regions = service.getCacheNames();
 		String serverAndPort = service.getServiceAddress() + ":" + service.getServicePort();
 
@@ -178,6 +179,7 @@ public class LateralTCPDiscoveryListener implements IDiscoveryListener
 							lca.setTcpServer(serverAndPort);
 
 							LateralCacheAsyncFacade<?, ?> facade = (LateralCacheAsyncFacade<?, ?>) kit;
+							// 创建对应的远程缓存实例，并且添加到列表中
 							LateralCacheAsync<?, ?> async = factory.createCacheAsync(lca, facade.getCacheEventLogger(),
 									facade.getElementSerializer());
 							boolean result = addAsync(async);

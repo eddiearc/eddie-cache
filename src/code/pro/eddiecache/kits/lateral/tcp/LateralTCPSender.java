@@ -148,6 +148,7 @@ public class LateralTCPSender
 		{
 			try
 			{
+				// 清空socket中数据流在发送数据之前
 				if (socket.getInputStream().available() > 0)
 				{
 					socket.getInputStream().read(new byte[socket.getInputStream().available()]);
