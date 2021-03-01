@@ -16,7 +16,7 @@
 
 ## 缓存实例相关原理
 - DiskCache
-    - [IndexedDiskCache](./AboutIndexedDiskCacheKit.md)
-    - [BlockDiskCache](./AboutBlockDiskCacheKit.md)
-- [LateralCache](./AboutLateralCacheKit.md)
+    - [IndexedDiskCache](DesignDocument/AboutIndexedDiskCacheKit.md)
+    - [BlockDiskCache](DesignDocument/AboutBlockDiskCacheKit.md)
+- [LateralCache](DesignDocument/AboutLateralCacheKit.md)
 - [PaxosCache]()
