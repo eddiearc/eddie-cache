@@ -18,5 +18,5 @@
 - DiskCache
     - [IndexedDiskCache](./AboutIndexedDiskCacheKit.md)
     - [BlockDiskCache](./AboutBlockDiskCacheKit.md)
-- [LateralCache]()
+- [LateralCache](./AboutLateralCacheKit.md)
 - [PaxosCache]()
