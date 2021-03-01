@@ -245,7 +245,7 @@ public class LeaderRole implements FailureListener
 			{
 				if (!proposals.containsKey(seqNo))
 				{
-					createProposal(seqNo, NO_OP, 0l);
+					createProposal(seqNo, NO_OP, 0L);
 					assistants.add(new MultiAccept(membership, messenger, seqNo, NO_OP, 0l));
 				}
 			}

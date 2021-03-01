@@ -11,6 +11,9 @@ import java.util.Set;
 
 import pro.eddiecache.kits.paxos.comm.Member;
 
+/**
+ * @author eddie
+ */
 public class PaxosUtils
 {
 	static Member selectLeader(Collection<Member> members)
@@ -58,19 +61,13 @@ public class PaxosUtils
 			ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
 			return ois.readObject();
 		}
-		catch (ClassNotFoundException e)
+		catch (ClassNotFoundException | IOException e)
 		{
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}
-		catch (IOException e)
+		} finally
 		{
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-		finally
-		{
-			if (ois != null)
+			if (ois != null) {
 				try
 				{
 					ois.close();
@@ -79,14 +76,16 @@ public class PaxosUtils
 				{
 					e.printStackTrace();
 				}
+			}
 		}
 	}
 
 	public static long findMax(Set<Long> longs)
 	{
 		long max = -1;
-		for (Long n : longs)
+		for (Long n : longs) {
 			max = Math.max(n, max);
+		}
 		return max;
 	}
 }

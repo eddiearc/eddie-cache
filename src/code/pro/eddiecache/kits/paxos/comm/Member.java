@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+/**
+ * @author eddie
+ * paxos的会议成员
+ * 包含了 ip：port 信息
+ */
 public class Member implements Comparable<Member>, Serializable
 {
 	private static final long serialVersionUID = 1L;

@@ -18,6 +18,9 @@ import pro.eddiecache.kits.lateral.LateralCacheAttributes;
 import pro.eddiecache.utils.discovery.DiscoveredService;
 import pro.eddiecache.utils.discovery.IDiscoveryListener;
 
+/**
+ * @author eddie
+ */
 public class LateralTCPDiscoveryListener implements IDiscoveryListener
 {
 	private static final Log log = LogFactory.getLog(LateralTCPDiscoveryListener.class);

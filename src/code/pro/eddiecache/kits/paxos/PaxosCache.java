@@ -18,6 +18,9 @@ import pro.eddiecache.kits.KitCacheAttributes;
 import pro.eddiecache.kits.paxos.comm.Member;
 import pro.eddiecache.kits.paxos.comm.Members;
 
+/**
+ * @author eddie
+ */
 public class PaxosCache<K, V> extends AbstractKitCacheEvent<K, V>
 {
 
@@ -34,15 +37,14 @@ public class PaxosCache<K, V> extends AbstractKitCacheEvent<K, V>
 			String ip = s.split(":")[0];
 			String port = s.split(":")[1];
 
-			Member member = new Member(InetAddress.getByName(ip), Integer.valueOf(port));
+			Member member = new Member(InetAddress.getByName(ip), Integer.parseInt(port));
 
 			memberList.add(member);
-
 		}
 
 		Members members = new Members(memberList);
 
-		int myPosition = Integer.valueOf(cattr.getMyPosition());
+		int myPosition = Integer.parseInt(cattr.getMyPosition());
 
 		group = new PaxosGroup(members.get(myPosition), new PaxosCacheReceiver());
 

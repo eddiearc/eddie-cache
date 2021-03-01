@@ -17,14 +17,50 @@ import pro.eddiecache.kits.paxos.PaxosUtils;
 public class UDPMessenger implements CommLayer
 {
 	public static final int BUFFER_SIZE = 128 * 1024;
+
+	/**
+	 * 心跳周期
+	 */
 	public static final int UPDATE_PERIOD = 100;
+
+	/**
+	 * 用于通信使用的socket
+	 */
 	private final DatagramSocket socket;
+
+	/**
+	 * 用于接收的Packet
+	 */
 	private final DatagramPacket receivePacket;
+
+	/**
+	 * 用于接收信息的线程
+	 */
 	private final ReceivingThread receivingThread;
+
+	/**
+	 * 用于发送心跳的（Leader专属）
+	 */
 	private final TickingThread tickingThread;
+
+	/**
+	 * 分发使用的线程
+	 */
 	private final DispatchingThread dispatchThread;
+
+	/**
+	 * 监听并处理消息
+	 */
 	private MessageListener listener;
+
+	/**
+	 * 运行标识
+	 */
 	private boolean running = true;
+
+	/**
+	 * 用于存储信息
+	 */
 	private BlockingQueue<byte[]> msgQueue = new LinkedBlockingQueue<byte[]>();
 
 	public UDPMessenger() throws SocketException, UnknownHostException
@@ -32,7 +68,7 @@ public class UDPMessenger implements CommLayer
 		this(2440);
 	}
 
-	public UDPMessenger(int port) throws SocketException, UnknownHostException
+	public UDPMessenger(int port) throws SocketException
 	{
 		socket = new DatagramSocket(port);
 		socket.setReuseAddress(true);
@@ -51,6 +87,12 @@ public class UDPMessenger implements CommLayer
 		this.listener = listener;
 	}
 
+	/**
+	 * 向多个成员发送信息
+	 *
+	 * @param members 成员列表
+	 * @param message 信息
+	 */
 	@Override
 	public void sendTo(List<Member> members, byte[] message)
 	{
@@ -78,6 +120,12 @@ public class UDPMessenger implements CommLayer
 		}
 	}
 
+	/**
+	 * 向一个成员发送信息
+	 *
+	 * @param member 成员信息
+	 * @param message 相关信息
+	 */
 	@Override
 	public void sendTo(Member member, byte[] message)
 	{
@@ -109,6 +157,8 @@ public class UDPMessenger implements CommLayer
 		this.dispatchThread.interrupt();
 	}
 
+	/////////////// 接收信息线程 ///////////////////
+
 	private class ReceivingThread extends Thread
 	{
 		@Override
@@ -126,14 +176,7 @@ public class UDPMessenger implements CommLayer
 					}
 					msgQueue.put(receivePacket.getData().clone());
 				}
-				catch (IOException e)
-				{
-					if (running)
-					{
-						e.printStackTrace();
-					}
-				}
-				catch (InterruptedException e)
+				catch (IOException | InterruptedException e)
 				{
 					if (running)
 					{
@@ -144,6 +187,9 @@ public class UDPMessenger implements CommLayer
 		}
 	}
 
+	/**
+	 * 调度线程，用于调度消息队列中的消息
+	 */
 	private class DispatchingThread extends Thread
 	{
 		@Override
@@ -170,6 +216,9 @@ public class UDPMessenger implements CommLayer
 		}
 	}
 
+	/**
+	 * 发送心跳的线程，用于维持Leader地位
+	 */
 	private class TickingThread extends Thread
 	{
 		@Override
