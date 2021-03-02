@@ -2,12 +2,16 @@ package pro.eddiecache.kits.paxos.messages;
 
 import java.io.Serializable;
 
+/**
+ * @author eddie
+ */
 public interface SpecialMessage extends Serializable
 {
 	MessageType getMessageType();
 
 	enum MessageType
 	{
+		// 各种消息类型
 		BROADCAST_REQ,
 		BROADCAST,
 		ACCEPT,

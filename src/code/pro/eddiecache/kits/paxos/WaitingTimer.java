@@ -21,6 +21,11 @@ public class WaitingTimer
 		return semaphore.tryAcquire(1000, TimeUnit.MILLISECONDS);
 	}
 
+	/**
+	 * 解除阻塞
+	 *
+	 * @param msgId 信息ID
+	 */
 	public void unblock(long msgId)
 	{
 		synchronized (waitingForResponse)
@@ -33,6 +38,12 @@ public class WaitingTimer
 		}
 	}
 
+	/**
+	 * get Or Create 信号灯
+	 *
+	 * @param msgId 信息ID
+	 * @return 相关类
+	 */
 	private Semaphore getOrCreateSemaphore(long msgId)
 	{
 		if (!waitingForResponse.containsKey(msgId))

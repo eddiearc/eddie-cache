@@ -7,6 +7,9 @@ import java.net.UnknownHostException;
 import pro.eddiecache.kits.paxos.comm.CommLayer;
 import pro.eddiecache.kits.paxos.comm.UDPMessenger;
 
+/**
+ * @author eddie
+ */
 public class PaxosGroup implements CommLayer.MessageListener
 {
 	private final AcceptorRole acceptorRole;
@@ -16,6 +19,7 @@ public class PaxosGroup implements CommLayer.MessageListener
 
 	public PaxosGroup(GroupMembership membership, Receiver receiver) throws SocketException, UnknownHostException
 	{
+		// 创建信使
 		this(membership, new UDPMessenger(membership.getUID().getPort()), receiver);
 	}
 
@@ -35,6 +39,11 @@ public class PaxosGroup implements CommLayer.MessageListener
 		this.commLayer.setListener(this);
 	}
 
+	/**
+	 * 广播信息
+	 *
+	 * @param message 信息
+	 */
 	public void broadcast(Serializable message)
 	{
 		acceptorRole.broadcast(message);
@@ -45,6 +54,11 @@ public class PaxosGroup implements CommLayer.MessageListener
 		commLayer.close();
 	}
 
+	/**
+	 * 本地心跳发起 分发信息
+	 *
+	 * @param message 信息
+	 */
 	private void dispatch(Serializable message)
 	{
 		leaderRole.dispatch(message);

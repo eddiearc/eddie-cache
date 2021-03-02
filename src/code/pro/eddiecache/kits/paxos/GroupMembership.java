@@ -5,10 +5,24 @@ import java.util.List;
 
 import pro.eddiecache.kits.paxos.comm.Member;
 
+/**
+ * @author eddie
+ */
 public class GroupMembership
 {
+	/**
+	 * PaxosGroup中的成员
+	 */
 	private final List<Member> members;
+
+	/**
+	 * 本机的信息
+	 */
 	private final Member me;
+
+	/**
+	 * 本机在group（members）中的位置
+	 */
 	private final int positionInGroup;
 
 	public GroupMembership(List<Member> members, int i)
@@ -48,8 +62,9 @@ public class GroupMembership
 	{
 		for (int i = 0; i < sortedMembers.size(); i++)
 		{
-			if (sortedMembers.get(i).equals(me))
+			if (sortedMembers.get(i).equals(me)) {
 				return i;
+			}
 		}
 		throw new RuntimeException("Could not find " + me + " in " + sortedMembers.toString());
 	}

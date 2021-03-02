@@ -5,6 +5,9 @@ import java.util.List;
 
 import pro.eddiecache.kits.paxos.GroupMembership;
 
+/**
+ * @author eddie
+ */
 public class Members
 {
 	private final List<Member> members;

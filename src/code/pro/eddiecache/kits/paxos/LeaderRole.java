@@ -23,6 +23,9 @@ import pro.eddiecache.kits.paxos.messages.Success;
 import pro.eddiecache.kits.paxos.messages.SuccessAck;
 import pro.eddiecache.kits.paxos.messages.ViewAccepted;
 
+/**
+ * @author eddie
+ */
 public class LeaderRole implements FailureListener
 {
 	private static final NoOp NO_OP = new NoOp();
@@ -88,6 +91,11 @@ public class LeaderRole implements FailureListener
 		}
 	}
 
+	/**
+	 * 发起心跳
+	 *
+	 * @param tick 心跳
+	 */
 	@SuppressWarnings("rawtypes")
 	public synchronized void update(Tick tick)
 	{
@@ -211,8 +219,9 @@ public class LeaderRole implements FailureListener
 			if (message instanceof ViewAccepted)
 			{
 				ViewAccepted viewAccepted = (ViewAccepted) message;
-				if (viewAccepted.viewNumber != viewNumber)
+				if (viewAccepted.viewNumber != viewNumber) {
 					return null;
+				}
 				registerViewAcceptance(viewAccepted);
 				return viewAccepted;
 			}
@@ -246,7 +255,7 @@ public class LeaderRole implements FailureListener
 				if (!proposals.containsKey(seqNo))
 				{
 					createProposal(seqNo, NO_OP, 0L);
-					assistants.add(new MultiAccept(membership, messenger, seqNo, NO_OP, 0l));
+					assistants.add(new MultiAccept(membership, messenger, seqNo, NO_OP, 0L));
 				}
 			}
 		}

@@ -68,6 +68,15 @@ public class UDPMessenger implements CommLayer
 		this(2440);
 	}
 
+	/**
+	 * 创建一个基于port端口通信的信使
+	 *
+	 * 接收信息的线程启动并等待
+	 * 心跳线程启动，并发送心跳
+	 * 分发线程启动并等待任务
+	 *
+	 * @param port 端口
+	 */
 	public UDPMessenger(int port) throws SocketException
 	{
 		socket = new DatagramSocket(port);
@@ -87,12 +96,6 @@ public class UDPMessenger implements CommLayer
 		this.listener = listener;
 	}
 
-	/**
-	 * 向多个成员发送信息
-	 *
-	 * @param members 成员列表
-	 * @param message 信息
-	 */
 	@Override
 	public void sendTo(List<Member> members, byte[] message)
 	{
@@ -120,12 +123,6 @@ public class UDPMessenger implements CommLayer
 		}
 	}
 
-	/**
-	 * 向一个成员发送信息
-	 *
-	 * @param member 成员信息
-	 * @param message 相关信息
-	 */
 	@Override
 	public void sendTo(Member member, byte[] message)
 	{
@@ -157,8 +154,9 @@ public class UDPMessenger implements CommLayer
 		this.dispatchThread.interrupt();
 	}
 
-	/////////////// 接收信息线程 ///////////////////
-
+	/**
+	 * 接收信息线程
+	 */
 	private class ReceivingThread extends Thread
 	{
 		@Override
@@ -188,7 +186,7 @@ public class UDPMessenger implements CommLayer
 	}
 
 	/**
-	 * 调度线程，用于调度消息队列中的消息
+	 * 调度线程，用于调度处理消息队列中的消息
 	 */
 	private class DispatchingThread extends Thread
 	{
@@ -228,6 +226,7 @@ public class UDPMessenger implements CommLayer
 			{
 				while (running)
 				{
+					// 维持心跳
 					dispatch(PaxosUtils.serialize(new Tick(System.currentTimeMillis())));
 					sleep(UPDATE_PERIOD);
 				}
@@ -242,6 +241,11 @@ public class UDPMessenger implements CommLayer
 		}
 	};
 
+	/**
+	 * 通过信使进行处理
+	 *
+	 * @param msg 信息
+	 */
 	private synchronized void dispatch(byte[] msg)
 	{
 		if (listener != null)

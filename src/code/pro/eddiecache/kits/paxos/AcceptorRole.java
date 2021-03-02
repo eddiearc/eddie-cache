@@ -17,9 +17,12 @@ import pro.eddiecache.kits.paxos.messages.Success;
 import pro.eddiecache.kits.paxos.messages.SuccessAck;
 import pro.eddiecache.kits.paxos.messages.ViewAccepted;
 
+/**
+ * @author eddie
+ */
 public class AcceptorRole
 {
-	public static final long MAX_CIRCULATING_MESSAGES = 1000000l;
+	public static final long MAX_CIRCULATING_MESSAGES = 1000000L;
 	private final GroupMembership membership;
 	private final CommLayer messenger;
 	private final BufferedReceiver receiver;
@@ -43,6 +46,14 @@ public class AcceptorRole
 		this.leader = me;
 	}
 
+	/**
+	 * 广播信息
+	 * 先发送给leader
+	 * 再由leader发送给集群中的各个节点
+	 * 并监听是否广播成功
+	 *
+	 * @param message 信息
+	 */
 	public void broadcast(Serializable message)
 	{
 		long msgId = createMsgId(message);

@@ -11,6 +11,10 @@ import pro.eddiecache.kits.paxos.comm.Member;
 import pro.eddiecache.kits.paxos.comm.Tick;
 import pro.eddiecache.kits.paxos.messages.Heartbeat;
 
+/**
+ * @author eddie
+ * 负责监视paxos集群中的存活情况，收发心跳
+ */
 public class FailureDetector
 {
 	private static final long INTERVAL = 1000; // 1 秒
@@ -43,6 +47,11 @@ public class FailureDetector
 		this.lastHearbeat = time;
 	}
 
+	/**
+	 * 检查是否由失效的节点，timeout时间内未通信
+	 *
+	 * @param time 时间
+	 */
 	private void checkForFailedMembers(long time)
 	{
 		for (Member member : membership.getMembers())

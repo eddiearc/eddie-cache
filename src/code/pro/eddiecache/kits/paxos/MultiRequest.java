@@ -46,6 +46,9 @@ public abstract class MultiRequest<T extends Serializable, R extends MessageWith
 		}
 	}
 
+	/**
+	 * 达到半数以上
+	 */
 	protected void onQuorumReached()
 	{
 	}
