@@ -346,6 +346,9 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 		return isOk;
 	}
 
+	/**
+	 * 持久化key
+	 */
 	protected void saveKeys()
 	{
 		try
@@ -357,8 +360,7 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 
 			keyFile.reset();
 
-			HashMap<K, IndexedDiskElementDescriptor> keys = new HashMap<K, IndexedDiskElementDescriptor>();
-			keys.putAll(keyHash);
+			HashMap<K, IndexedDiskElementDescriptor> keys = new HashMap<K, IndexedDiskElementDescriptor>(keyHash);
 
 			if (keys.size() > 0)
 			{
