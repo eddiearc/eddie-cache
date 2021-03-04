@@ -3,6 +3,7 @@ package pro.eddiecache.kits.paxos;
 import java.io.Serializable;
 
 /**
+ * @author eddie
  * 接受到的消息，编年体历史记录
  */
 public class Acceptance implements Serializable

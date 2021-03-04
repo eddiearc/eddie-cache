@@ -19,6 +19,7 @@ public interface SpecialMessage extends Serializable
 		JOIN,
 		NEW_VIEW,
 		SUCCESS,
+
 		ABORT,
 		PREVIOUS_OUTCOME,
 		SUCCESS_ACK,

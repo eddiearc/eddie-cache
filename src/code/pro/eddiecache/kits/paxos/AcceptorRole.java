@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import pro.eddiecache.core.CacheEventQueueFactory;
 import pro.eddiecache.kits.paxos.comm.CommLayer;
 import pro.eddiecache.kits.paxos.comm.Member;
 import pro.eddiecache.kits.paxos.messages.Abort;
@@ -22,6 +25,8 @@ import pro.eddiecache.kits.paxos.messages.ViewAccepted;
  */
 public class AcceptorRole
 {
+	private static final Log log = LogFactory.getLog(AcceptorRole.class);
+
 	public static final long MAX_CIRCULATING_MESSAGES = 1000000L;
 	private final GroupMembership membership;
 	private final CommLayer messenger;
@@ -30,10 +35,18 @@ public class AcceptorRole
 	private final WaitingTimer waitingForResponse = new WaitingTimer();
 	private final int myPositionInGroup;
 
-	Map<Long, Acceptance> accepted = new HashMap<Long, Acceptance>(); // what we accepted for each seqNo
+	/**
+	 * what we accepted for each seqNo
+	 */
+	Map<Long, Acceptance> accepted = new HashMap<Long, Acceptance>();
+
 	private Member leader;
 	private long viewNumber;
-	private MissingMessagesTracker missing = new MissingMessagesTracker(); // missing SUCCESS messages
+
+	/**
+	 * missing SUCCESS messages
+	 */
+	private MissingMessagesTracker missing = new MissingMessagesTracker();
 	private AtomicLong msgIdGenerator = new AtomicLong(0);
 
 	public AcceptorRole(GroupMembership membership, CommLayer messenger, Receiver receiver)
@@ -94,15 +107,22 @@ public class AcceptorRole
 				case SUCCESS:
 					onSuccess((Success) specialMessage);
 					break;
+				default:
+					break;
 			}
 		}
 	}
 
+	/**
+	 * 进入一个新的view (Leader更新换代)
+	 */
 	private void onNewView(NewView newView)
 	{
 		if (newView.viewNumber > viewNumber)
 		{
-			System.out.println(me + ": setting leader to " + newView.leader);
+			if (log.isDebugEnabled()) {
+				log.debug(me + ": setting leader to " + newView.leader);
+			}
 			this.leader = newView.leader;
 			this.viewNumber = newView.viewNumber;
 			messenger.sendTo(leader, PaxosUtils.serialize(new ViewAccepted(viewNumber, accepted, me)));
@@ -113,8 +133,14 @@ public class AcceptorRole
 		}
 	}
 
+	/**
+	 * 接收信息
+	 *
+	 * @param accept 相关信息
+	 */
 	private void onAccept(Accept accept)
 	{
+		// 是上一个任期的数据，不进行处理
 		if (accept.viewNo < viewNumber)
 		{
 			messenger.sendTo(accept.sender, PaxosUtils.serialize(new Abort(accept.viewNo, accept.seqNo)));
@@ -127,6 +153,11 @@ public class AcceptorRole
 		}
 	}
 
+	/**
+	 * 二阶段提交的commit
+	 *
+	 * @param success Paxos-cluster半数以上同步成功，commit
+	 */
 	private void onSuccess(Success success)
 	{
 		receiver.receive(success.seqNo, success.message);

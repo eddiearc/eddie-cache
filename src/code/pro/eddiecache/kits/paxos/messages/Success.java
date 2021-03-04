@@ -3,7 +3,7 @@ package pro.eddiecache.kits.paxos.messages;
 import java.io.Serializable;
 
 /**
- * 
+ * @author eddie
  * leader收到半数以上的确认消息，则发送Success消息给成员
  */
 public class Success implements SpecialMessage

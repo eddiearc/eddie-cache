@@ -30,16 +30,36 @@ public class LeaderRole implements FailureListener
 {
 	private static final NoOp NO_OP = new NoOp();
 	private final GroupMembership membership;
+
+	/**
+	 * 信使
+	 */
 	private final CommLayer messenger;
 	private final Member me;
+
+	/**
+	 * 发起的提案
+	 */
 	private final Map<Long, Proposal> proposals = new HashMap<Long, Proposal>();
+
+	/**
+	 * 成功提交的信息
+	 */
 	private final Map<Long, Serializable> successfulMessages = new HashMap<Long, Serializable>();
+
+	/**
+	 * 成功提交的信息id
+	 */
 	private final Map<Long, Long> successfulMsgIds = new HashMap<Long, Long>();
 	private final HashSet<Long> messagesCirculating = new HashSet<Long>(); // msgIds of messages that were not
 	@SuppressWarnings("rawtypes")
 	private final List<MultiRequest> assistants = new LinkedList<MultiRequest>();
 
 	private long viewNumber = 0;
+
+	/**
+	 * 提案的序列, 自增
+	 */
 	private long seqNo = 0;
 	private boolean iAmElected = false;
 	private long time;
@@ -57,6 +77,14 @@ public class LeaderRole implements FailureListener
 		}
 	}
 
+	/**
+	 * 调度处理信息
+	 * 并将交由assistants处理
+	 * 根据多态，assistant可以识别不同的信息类型
+	 * 进行对应的处理操作
+	 *
+	 * @param message 信息 远程的信息或本地发起的信息
+	 */
 	@SuppressWarnings("rawtypes")
 	public synchronized void dispatch(Serializable message)
 	{
@@ -74,6 +102,8 @@ public class LeaderRole implements FailureListener
 				case NEW_VIEW:
 					onNewView((NewView) specialMessage);
 					break;
+				default:
+					break;
 			}
 		}
 		else if (message instanceof Tick)
@@ -81,7 +111,7 @@ public class LeaderRole implements FailureListener
 			update((Tick) message);
 		}
 
-		for (MultiRequest assistant : new ArrayList<MultiRequest>(assistants))
+		for (MultiRequest assistant : new ArrayList<>(assistants))
 		{
 			assistant.receive(message);
 			if (assistant.isFinished())
@@ -123,6 +153,12 @@ public class LeaderRole implements FailureListener
 		abortBallot(abort.seqNo);
 	}
 
+	/**
+	 * 发送已经成功同步，但是accepter那边未拥有的信息给accepter
+	 *
+	 * @param missingSuccess 错过的信息的集合
+	 * @param sender accepter ip:port
+	 */
 	private void sendMissingSuccessMessages(Set<Long> missingSuccess, Member sender)
 	{
 		for (Long seqNo : missingSuccess)
@@ -203,6 +239,9 @@ public class LeaderRole implements FailureListener
 		proposals.remove(seqNo);
 	}
 
+	/**
+	 * 负责选举工作的助理
+	 */
 	private class Election extends MultiRequest<NewView, ViewAccepted>
 	{
 		private final long viewNumber;
@@ -213,6 +252,9 @@ public class LeaderRole implements FailureListener
 			this.viewNumber = viewNumber;
 		}
 
+		/**
+		 * 过滤remote-server的心跳信息
+		 */
 		@Override
 		protected ViewAccepted filterResponse(Serializable message)
 		{
@@ -261,6 +303,10 @@ public class LeaderRole implements FailureListener
 		}
 	}
 
+	/**
+	 * 负责 发送与接收 数据情况的助理
+	 * 判断有几个节点收到该提案了（uncommitted）
+	 */
 	private class MultiAccept extends MultiRequest<Accept, Accepted>
 	{
 		private final long seqNo;
@@ -282,6 +328,7 @@ public class LeaderRole implements FailureListener
 			if (message instanceof Accepted)
 			{
 				Accepted accepted = (Accepted) message;
+				// 如果已经更换了任期了，或者当前处理的信息非此信息，则不处理
 				if (accepted.viewNo != viewNumber || accepted.seqNo != seqNo)
 				{
 					return null;
@@ -305,6 +352,11 @@ public class LeaderRole implements FailureListener
 		}
 	}
 
+	/**
+	 * 用于判断某一提案是否提交成功的助理
+	 * 属于二阶段提交的第二阶段
+	 * 负责判断paxos-cluster中的有多少个节点
+	 */
 	private class MultiSuccess extends MultiRequest<Success, SuccessAck>
 	{
 		private final long seqNo;

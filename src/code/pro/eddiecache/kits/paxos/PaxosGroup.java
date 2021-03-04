@@ -55,9 +55,9 @@ public class PaxosGroup implements CommLayer.MessageListener
 	}
 
 	/**
-	 * 本地心跳发起 分发信息
+	 * 调度信息
 	 *
-	 * @param message 信息
+	 * @param message remote server receive or local tick send.
 	 */
 	private void dispatch(Serializable message)
 	{

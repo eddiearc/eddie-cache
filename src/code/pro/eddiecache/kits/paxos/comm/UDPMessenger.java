@@ -186,7 +186,7 @@ public class UDPMessenger implements CommLayer
 	}
 
 	/**
-	 * 调度线程，用于调度处理消息队列中的消息
+	 * 调度线程，用于调度处理外部发送过来的信息
 	 */
 	private class DispatchingThread extends Thread
 	{
@@ -200,6 +200,7 @@ public class UDPMessenger implements CommLayer
 					byte[] msg = msgQueue.take();
 					if (running)
 					{
+						// 同步调用，来源于外部的信息
 						dispatch(msg);
 					}
 				}
@@ -215,7 +216,7 @@ public class UDPMessenger implements CommLayer
 	}
 
 	/**
-	 * 发送心跳的线程，用于维持Leader地位
+	 * 发送心跳的线程，用于维持Leader地位，local-server自发起的信息
 	 */
 	private class TickingThread extends Thread
 	{

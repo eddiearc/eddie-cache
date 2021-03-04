@@ -3,6 +3,9 @@ package pro.eddiecache.kits.paxos;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author eddie
+ */
 public class MissingMessagesTracker
 {
 	private long tail = 0;

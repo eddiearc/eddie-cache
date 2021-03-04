@@ -17,8 +17,8 @@ import pro.eddiecache.kits.paxos.messages.Heartbeat;
  */
 public class FailureDetector
 {
-	private static final long INTERVAL = 1000; // 1 秒
-	private static final long TIMEOUT = 3000; // 3 秒
+	private static final long INTERVAL = 1000;
+	private static final long TIMEOUT = 3000;
 
 	private final GroupMembership membership;
 	private final CommLayer messenger;
@@ -99,6 +99,11 @@ public class FailureDetector
 		checkForFailedMembers(time);
 	}
 
+	/**
+	 * FailureDetector use to monitor paxos-cluster.
+	 *
+	 * @param message remote server or local server message, heartbeat is remote, tick is local.
+	 */
 	public void dispatch(Serializable message)
 	{
 		if (message instanceof Heartbeat)
