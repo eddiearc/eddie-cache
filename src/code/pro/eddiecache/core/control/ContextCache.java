@@ -1191,7 +1191,7 @@ public class ContextCache<K, V> implements ICache<K, V>, IRequireScheduler
 	}
 
 	/**
-	 * 根据K-V对象拿出对应的事件处理器，
+	 * 根据K-V对象拿出对应的事件处理器
 	 *
 	 * @param element 被处理的对象实例
 	 * @param eventType 被处理的对象的事件类型
