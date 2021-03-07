@@ -233,38 +233,6 @@ public class LateralTCPService<K, V> implements ICacheServiceRemote<K, V>
 		sender.send(led);
 	}
 
-	public static void main(String args[])
-	{
-		try
-		{
-			LateralTCPSender sender = new LateralTCPSender(new TCPLateralCacheAttributes());
-
-			boolean notDone = true;
-			String message = null;
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
-
-			while (notDone)
-			{
-				System.out.println("Enter message:");
-				message = br.readLine();
-
-				if (message == null)
-				{
-					notDone = false;
-					continue;
-				}
-
-				CacheElement<String, String> ce = new CacheElement<String, String>("test", "test", message);
-				LateralElementDescriptor<String, String> led = new LateralElementDescriptor<String, String>(ce);
-				sender.send(led);
-			}
-		}
-		catch (IOException e)
-		{
-			System.out.println(e.toString());
-		}
-	}
-
 	protected void setListenerId(long listernId)
 	{
 		this.listenerId = listernId;
