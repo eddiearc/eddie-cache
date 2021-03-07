@@ -156,7 +156,7 @@ public class LeaderRole implements FailureListener
 	/**
 	 * 发送已经成功同步，但是accepter那边未拥有的信息给accepter
 	 *
-	 * @param missingSuccess 错过的信息的集合
+	 * @param missingSuccess 错过的日志的集合
 	 * @param sender accepter ip:port
 	 */
 	private void sendMissingSuccessMessages(Set<Long> missingSuccess, Member sender)
@@ -206,6 +206,11 @@ public class LeaderRole implements FailureListener
 		}
 	}
 
+	/**
+	 * 注册节点的接收情况
+	 *
+	 * @param viewAccepted 某节点的注册情况
+	 */
 	private void registerViewAcceptance(ViewAccepted viewAccepted)
 	{
 
@@ -229,6 +234,13 @@ public class LeaderRole implements FailureListener
 		proposals.put(seqNo, new Proposal(viewNumber, message, msgId));
 	}
 
+	/**
+	 * 注册节点的日志接收情况
+	 *
+	 * @param viewNo viewNumber
+	 * @param seqNo 日志序号
+	 * @param msgId 信息号
+	 */
 	private void registerAcceptance(long viewNo, long seqNo, long msgId)
 	{
 		proposals.get(seqNo).acceptDefault(viewNo, msgId);

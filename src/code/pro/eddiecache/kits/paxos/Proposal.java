@@ -2,8 +2,15 @@ package pro.eddiecache.kits.paxos;
 
 import java.io.Serializable;
 
+/**
+ * Paxos提议
+ * @author eddie
+ */
 public class Proposal
 {
+	/**
+	 * 提议信息
+	 */
 	Serializable proposedMessage;
 	long newestView;
 	Serializable newestOutcome;
@@ -23,11 +30,20 @@ public class Proposal
 		return choice;
 	}
 
+	/**
+	 * 确定接收原来的提议
+	 *
+	 * @param viewNo viewNumber
+	 * @param msgId 信息ID
+	 */
 	public void acceptDefault(long viewNo, long msgId)
 	{
 		acceptOutcome(viewNo, proposedMessage, msgId);
 	}
 
+	/**
+	 * 接收该提议
+	 */
 	public void acceptOutcome(long viewNo, Serializable outcome, long msgId)
 	{
 		if (viewNo > newestView)

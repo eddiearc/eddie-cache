@@ -6,8 +6,8 @@ import pro.eddiecache.kits.paxos.Acceptance;
 import pro.eddiecache.kits.paxos.comm.Member;
 
 /**
- * 
  * 告知leader，提名投票已经收到，相当于同意当选的
+ * @author eddie
  */
 public class ViewAccepted implements SpecialMessage, MessageWithSender
 {

@@ -4,6 +4,7 @@ import pro.eddiecache.kits.paxos.comm.Member;
 
 /**
  *  旧leader下野，系统指定新的leader当做提名人，新leader提名人开启选举
+ * @author eddie
  */
 public class NewView implements SpecialMessage
 {

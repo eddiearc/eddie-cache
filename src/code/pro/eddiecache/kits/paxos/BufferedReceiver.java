@@ -6,6 +6,9 @@ import java.util.Map;
 
 import pro.eddiecache.kits.paxos.messages.NoOp;
 
+/**
+ * @author eddie
+ */
 public class BufferedReceiver
 {
 	private final Receiver receiver;

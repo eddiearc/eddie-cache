@@ -48,7 +48,7 @@ public class FailureDetector
 	}
 
 	/**
-	 * 检查是否由失效的节点，timeout时间内未通信
+	 * 检查是否存在失效的节点，timeout时间内未通信
 	 *
 	 * @param time 时间
 	 */
@@ -64,7 +64,7 @@ public class FailureDetector
 			{
 				initialize(time, member);
 			}
-			// 超时了
+
 			if (time - lastHeardFrom.get(member) > TIMEOUT)
 			{
 				if (membersAlive.contains(member))
