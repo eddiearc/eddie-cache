@@ -172,11 +172,9 @@ public class LateralTCPCacheFactory extends AbstractKitCacheFactory
 	}
 
 	/**
+	 * 缓存远程实例
 	 *
-	 * @param attr
-	 * @param <K>
-	 * @param <V>
-	 * @return
+	 * @param attr 缓存配置信息
 	 */
 	@SuppressWarnings("unchecked")
 	public <K, V> ICacheServiceRemote<K, V> getCacheServiceRemoteInstance(ITCPLateralCacheAttributes attr)
