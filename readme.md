@@ -21,7 +21,8 @@
 - paxos1, paxos2, paxos3用于测试Disk组件与Paxos组件（同时运行三者）
 - lateral1, lateral2用于测试Disk组件与Lateral组件（同时运行二者）
 
-## 缓存实例相关原理
+## Design document
+- [IO model](DesignDocument/eddie-cache与Redis-IO模型思考.md)
 - DiskCache
     - [IndexedDiskCache](DesignDocument/AboutIndexedDiskCacheKit.md)
     - [BlockDiskCache](DesignDocument/AboutBlockDiskCacheKit.md)
