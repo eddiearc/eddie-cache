@@ -41,6 +41,9 @@ import pro.eddiecache.core.stats.IStats;
 import pro.eddiecache.core.stats.StatElement;
 import pro.eddiecache.kits.KitCache;
 
+/**
+ * @author eddie
+ */
 public class ContextCache<K, V> implements ICache<K, V>, IRequireScheduler
 {
 	private static final Log log = LogFactory.getLog(ContextCache.class);

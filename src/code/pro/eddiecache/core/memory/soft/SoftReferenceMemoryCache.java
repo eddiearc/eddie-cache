@@ -88,8 +88,8 @@ public class SoftReferenceMemoryCache<K, V> extends AbstractMemoryCache<K, V>
 
 		List<IStatElement<?>> elems = stats.getStatElements();
 		int emptyrefs = map.size() - getSize();
-		elems.add(new StatElement<Integer>("empty references", Integer.valueOf(emptyrefs)));
-		elems.add(new StatElement<Integer>("strong references", Integer.valueOf(strongReferences.size())));
+		elems.add(new StatElement<Integer>("empty references", emptyrefs));
+		elems.add(new StatElement<Integer>("strong references", strongReferences.size()));
 
 		return stats;
 	}
@@ -199,6 +199,11 @@ public class SoftReferenceMemoryCache<K, V> extends AbstractMemoryCache<K, V>
 		}
 	}
 
+	/**
+	 * 整理内存
+	 * 将超出缓存大小的部分，从强引用队列中取出，并持久化到磁盘中
+	 * 而使得，在JVM发送fullGC时，会将那些被持久化到磁盘中的K-V从内存中移除
+	 */
 	private void trimStrongReferences()
 	{
 		int max = getCacheAttributes().getMaxObjects();

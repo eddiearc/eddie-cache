@@ -76,7 +76,9 @@ public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 	private final ConcurrentSkipListSet<IndexedDiskElementDescriptor> queuedPutList = new ConcurrentSkipListSet<IndexedDiskElementDescriptor>(
 			new PositionComparator());
 
-	// （回收站）：用于记录已经分配了，但空闲的磁盘位置
+	/**
+	 * (回收站）：用于记录已经分配了，但空闲的磁盘位置
+	 */
 	private ConcurrentSkipListSet<IndexedDiskElementDescriptor> recycle;
 
 	private final IndexedDiskCacheAttributes cattr;

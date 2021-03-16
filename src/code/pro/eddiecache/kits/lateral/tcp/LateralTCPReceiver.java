@@ -32,6 +32,9 @@ import pro.eddiecache.kits.lateral.ILateralCacheListener;
 import pro.eddiecache.kits.lateral.LateralElementDescriptor;
 import pro.eddiecache.utils.threadpool.CacheKitThreadFactory;
 
+/**
+ * @author eddie
+ */
 public class LateralTCPReceiver<K, V> implements ILateralCacheListener<K, V>, IShutdownObserver
 {
 	private static final Log log = LogFactory.getLog(LateralTCPReceiver.class);

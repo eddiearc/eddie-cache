@@ -395,6 +395,9 @@ public class LeaderRole implements FailureListener
 			}
 		}
 
+		/**
+		 * 一条提案成功被提交到各个节点
+		 */
 		@Override
 		protected void onCompleted()
 		{
