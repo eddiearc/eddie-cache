@@ -125,7 +125,7 @@ public class CacheEventQueue<K, V> extends AbstractCacheEventQueue<K, V>
 				{
 					event = queue.poll(getWaitToDieMillis(), TimeUnit.MILLISECONDS);
 				}
-				catch (InterruptedException e)
+				catch (InterruptedException ignored)
 				{
 
 				}

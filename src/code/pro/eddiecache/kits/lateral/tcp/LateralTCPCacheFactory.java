@@ -28,6 +28,9 @@ import pro.eddiecache.kits.lateral.LateralCacheMonitor;
 import pro.eddiecache.utils.discovery.UDPDiscoveryManager;
 import pro.eddiecache.utils.discovery.UDPDiscoveryService;
 
+/**
+ * @author eddie
+ */
 public class LateralTCPCacheFactory extends AbstractKitCacheFactory
 {
 	private static final Log log = LogFactory.getLog(LateralTCPCacheFactory.class);

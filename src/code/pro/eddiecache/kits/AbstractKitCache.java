@@ -9,6 +9,9 @@ import pro.eddiecache.core.model.ICacheElement;
 import pro.eddiecache.core.model.IElementSerializer;
 import pro.eddiecache.utils.serialization.StandardSerializer;
 
+/**
+ * @author eddie
+ */
 public abstract class AbstractKitCache<K, V> implements KitCache<K, V>
 {
 	private ICacheEventWrapper cacheEventWrapper;

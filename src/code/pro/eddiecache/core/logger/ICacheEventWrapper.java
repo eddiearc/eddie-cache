@@ -1,6 +1,7 @@
 package pro.eddiecache.core.logger;
 
 /**
+ * @author eddie 
  * 缓存事件记录器，wrapper即是logger，logger更具体，更实在，而wrapper更抽象，更虚幻，虚实结合，事件和日志结合
  */
 public interface ICacheEventWrapper

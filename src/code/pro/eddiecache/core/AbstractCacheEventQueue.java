@@ -10,6 +10,9 @@ import pro.eddiecache.core.model.ICacheElement;
 import pro.eddiecache.core.model.ICacheEventQueue;
 import pro.eddiecache.core.model.ICacheListener;
 
+/**
+ * @author eddie
+ */
 public abstract class AbstractCacheEventQueue<K, V> implements ICacheEventQueue<K, V>
 {
 	private static final Log log = LogFactory.getLog(AbstractCacheEventQueue.class);

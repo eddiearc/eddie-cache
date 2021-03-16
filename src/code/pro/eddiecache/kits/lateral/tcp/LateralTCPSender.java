@@ -14,6 +14,7 @@ import pro.eddiecache.kits.lateral.LateralElementDescriptor;
 
 /**
  * @author eddie
+ * 用于线性组建的缓存 更新/获取 信息传输
  */
 public class LateralTCPSender
 {

@@ -31,7 +31,7 @@ public abstract class AbstractKitCacheEvent<K, V> extends AbstractKitCache<K, V>
 	}
 
 	/**
-	 * 更新缓存对象
+	 * 更新缓存
 	 * @param cacheElement 被更新的缓存对象
 	 */
 	protected abstract void processUpdate(ICacheElement<K, V> cacheElement) throws IOException;

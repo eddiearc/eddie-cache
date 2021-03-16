@@ -62,6 +62,11 @@ public class LateralTCPService<K, V> implements ICacheServiceRemote<K, V>
 		update(item, getListenerId());
 	}
 
+	/**
+	 * 更新 remote-service 缓存实例
+	 * @param item 缓存对象
+	 * @param requesterId 请求id
+	 */
 	@Override
 	public void update(ICacheElement<K, V> item, long requesterId) throws IOException
 	{
