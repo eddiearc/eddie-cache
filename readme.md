@@ -7,14 +7,8 @@
 ### Current features
 
 - 多种缓存淘汰算法
-- 缓存正常关闭下的数据持久化
-- 基于Socket通信的高可用分布式集群
+- Multi Reactor服务器模型的高可用分布式集群组件集群
 - 基于Paxos算法的强一致性集群
-
-### Future features
-
-- 借鉴Redis-AOF机制：将日志进行实时记录，达到一个实时持久化的作用
-- 事务的支持
 
 ## 运行与测试
 `src/test`目录中：
