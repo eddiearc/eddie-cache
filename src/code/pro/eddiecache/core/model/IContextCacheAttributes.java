@@ -2,6 +2,10 @@ package pro.eddiecache.core.model;
 
 import java.io.Serializable;
 
+/**
+ * @author eddie
+ * 缓存的属性设置问题
+ */
 public interface IContextCacheAttributes extends Serializable, Cloneable
 {
 	enum DiskUsagePattern

@@ -21,4 +21,4 @@
     - [IndexedDiskCache](DesignDocument/AboutIndexedDiskCacheKit.md)
     - [BlockDiskCache](DesignDocument/AboutBlockDiskCacheKit.md)
 - [LateralCache](DesignDocument/AboutLateralCacheKit.md)
-- [PaxosCache]()
+- [PaxosCache](DesignDocument/AboutPaxosCacheKit.md)

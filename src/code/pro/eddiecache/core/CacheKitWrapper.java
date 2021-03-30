@@ -11,7 +11,10 @@ import pro.eddiecache.core.model.ICacheListener;
 
 /**
  * @author eddie
- * @description 用于LateralCache的包装，实际访问了LateralCache的方法
+ * @description
+ * 		对LateralCache进行包装并实现了ICacheListener接口
+ * 		Listener内部维护了一个LateralCache
+ * 		接口的调用实际是调用了LateralCache的方法
  */
 public class CacheKitWrapper<K, V> implements ICacheListener<K, V>
 {

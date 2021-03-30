@@ -11,11 +11,14 @@ public class lateralTest2
 
 		CacheKit.setConfigFilename("/lateral2/cachekit.xml");
 		CacheKitAccess cacheKitAccess = CacheKit.getInstance("default");
+		CacheKitAccess cacheKitAccess1 = CacheKit.getInstance("default1");
+
 		//main线程休眠，等待服务发现和注册的完成
 		Thread.sleep(60000);
 
 		//		测试节点的数据读取
 		System.out.println("缓存对象" + cacheKitAccess.get("id2"));
+		System.out.println(cacheKitAccess1.get("key"));
 
 		//
 		Thread.sleep(30000);

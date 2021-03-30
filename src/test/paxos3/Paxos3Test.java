@@ -18,8 +18,7 @@ public class Paxos3Test
 		System.out.println("缓存对象" + cacheKitAccess.get("id2"));
 
 		//
-		//		Thread.sleep(30000);
-
+		Thread.sleep(30000);
 	}
 
 }
