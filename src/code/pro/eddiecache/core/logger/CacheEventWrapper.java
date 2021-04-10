@@ -3,6 +3,9 @@ package pro.eddiecache.core.logger;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * @author eddie
+ */
 public class CacheEventWrapper implements ICacheEventWrapper
 {
 	private String categoryName = CacheEventWrapper.class.getName();

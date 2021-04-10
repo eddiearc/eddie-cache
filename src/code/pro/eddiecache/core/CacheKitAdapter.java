@@ -16,9 +16,9 @@ import pro.eddiecache.core.model.ICacheListener;
  * 		Listener内部维护了一个LateralCache
  * 		接口的调用实际是调用了LateralCache的方法
  */
-public class CacheKitWrapper<K, V> implements ICacheListener<K, V>
+public class CacheKitAdapter<K, V> implements ICacheListener<K, V>
 {
-	private static final Log log = LogFactory.getLog(CacheKitWrapper.class);
+	private static final Log log = LogFactory.getLog(CacheKitAdapter.class);
 
 	private final ICache<K, V> cache;
 
@@ -37,7 +37,7 @@ public class CacheKitWrapper<K, V> implements ICacheListener<K, V>
 		return this.listenerId;
 	}
 
-	public CacheKitWrapper(ICache<K, V> cache)
+	public CacheKitAdapter(ICache<K, V> cache)
 	{
 		this.cache = cache;
 	}

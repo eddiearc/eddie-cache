@@ -13,7 +13,7 @@ import org.apache.commons.logging.LogFactory;
 
 import pro.eddiecache.core.CacheEventQueueFactory;
 import pro.eddiecache.core.CacheInfo;
-import pro.eddiecache.core.CacheKitWrapper;
+import pro.eddiecache.core.CacheKitAdapter;
 import pro.eddiecache.core.CacheStatus;
 import pro.eddiecache.core.model.ICacheElement;
 import pro.eddiecache.core.model.ICacheEventQueue;
@@ -54,8 +54,8 @@ public class LateralCacheAsync<K, V> extends AbstractKitCache<K, V>
 		}
 
 		CacheEventQueueFactory<K, V> factory = new CacheEventQueueFactory<K, V>();
-		// 将cache进行包装
-		this.eventQueue = factory.createCacheEventQueue(new CacheKitWrapper<K, V>(cache), CacheInfo.listenerId,
+		// 将cache进行适配
+		this.eventQueue = factory.createCacheEventQueue(new CacheKitAdapter<K, V>(cache), CacheInfo.listenerId,
 				cache.getCacheName(), cache.getKitCacheAttributes().getEventQueuePoolName(),
 				cache.getKitCacheAttributes().getEventQueueType());
 
@@ -282,7 +282,7 @@ public class LateralCacheAsync<K, V> extends AbstractKitCache<K, V>
 			eventQueue.destroy();
 		}
 		CacheEventQueueFactory<K, V> factory = new CacheEventQueueFactory<K, V>();
-		this.eventQueue = factory.createCacheEventQueue(new CacheKitWrapper<K, V>(cache), CacheInfo.listenerId,
+		this.eventQueue = factory.createCacheEventQueue(new CacheKitAdapter<K, V>(cache), CacheInfo.listenerId,
 				cache.getCacheName(), cache.getKitCacheAttributes().getEventQueuePoolName(),
 				cache.getKitCacheAttributes().getEventQueueType());
 	}
