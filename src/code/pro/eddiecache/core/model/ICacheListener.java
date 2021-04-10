@@ -2,6 +2,12 @@ package pro.eddiecache.core.model;
 
 import java.io.IOException;
 
+/**
+ * @author eddie
+ * 观察者模式的观察者
+ * @param <K>
+ * @param <V>
+ */
 public interface ICacheListener<K, V>
 {
 	void handlePut(ICacheElement<K, V> item) throws IOException;
