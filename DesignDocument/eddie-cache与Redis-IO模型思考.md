@@ -72,7 +72,7 @@
 
 服务器IO模型方面，使用了Multiple Reactors，使得服务器IO性能更加高。
 
-但是目前的实现中，`IO read / write`仍然与`memory IO`耦合，这将会在后期进行改进。
+但是目前的实现中，`IO read / write`仍然与`memory IO`耦合，这将会在下一个版本进行解决。
 
 ![Multiple Reactors](https://tva1.sinaimg.cn/large/008eGmZEly1goq6yu1vt6j314u0u07fn.jpg)
 
