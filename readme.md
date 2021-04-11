@@ -7,7 +7,7 @@
 ### Current features
 
 - 多种缓存淘汰算法
-- Multi Reactor服务器模型的高可用分布式集群组件集群
+- 基于Multi Reactor服务器模型构造的高可用集群
 - 基于Paxos算法的强一致性集群
 
 ## 运行与测试
