@@ -6,9 +6,12 @@
 
 ### Current features
 
-- 多种缓存淘汰算法
-- 基于Multi Reactor服务器模型构造的高可用集群
-- 基于Paxos算法的强一致性集群
+- 缓存淘汰算法的多样性，FIFO、LRU、LFU等；
+- 使用索引数据及块存储的方式对缓存进行持久化至磁盘中；
+- 使用UDP组播实现分布式缓存之间的服务发现；
+- 使用Multi-Reactors服务器设计模型实现分布式组件之间的高效率IO；
+- 使用Multi-Paxos算法解决分布式组件之间的分布式共识问题；
+- 使用Paxos Commit保证了多个节点的K-V数据的一致性。
 
 ## 运行与测试
 `src/test`目录中：
