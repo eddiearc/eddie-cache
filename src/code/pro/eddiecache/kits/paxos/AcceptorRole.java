@@ -38,7 +38,7 @@ public class AcceptorRole
 	/**
 	 * what we accepted for each seqNo
 	 */
-	Map<Long, Acceptance> accepted = new HashMap<Long, Acceptance>();
+	Map<Long, Acceptance> accepted = new HashMap<>();
 
 	private Member leader;
 	private long viewNumber;
@@ -85,6 +85,9 @@ public class AcceptorRole
 		}
 	}
 
+	/**
+	 * 生成一个消息Id
+	 */
 	private long createMsgId(Serializable message)
 	{
 		return myPositionInGroup * MAX_CIRCULATING_MESSAGES

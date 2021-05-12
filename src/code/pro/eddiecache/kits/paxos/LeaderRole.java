@@ -40,20 +40,24 @@ public class LeaderRole implements FailureListener
 	/**
 	 * 发起的提案
 	 */
-	private final Map<Long, Proposal> proposals = new HashMap<Long, Proposal>();
+	private final Map<Long, Proposal> proposals = new HashMap<>();
 
 	/**
 	 * 成功提交的信息
 	 */
-	private final Map<Long, Serializable> successfulMessages = new HashMap<Long, Serializable>();
+	private final Map<Long, Serializable> successfulMessages = new HashMap<>();
 
 	/**
 	 * 成功提交的信息id
 	 */
-	private final Map<Long, Long> successfulMsgIds = new HashMap<Long, Long>();
-	private final HashSet<Long> messagesCirculating = new HashSet<Long>(); // msgIds of messages that were not
+	private final Map<Long, Long> successfulMsgIds = new HashMap<>();
+
+	/**
+	 * msgIds of messages that were not
+	 */
+	private final HashSet<Long> messagesCirculating = new HashSet<>();
 	@SuppressWarnings("rawtypes")
-	private final List<MultiRequest> assistants = new LinkedList<MultiRequest>();
+	private final List<MultiRequest> assistants = new LinkedList<>();
 
 	private long viewNumber = 0;
 
@@ -156,7 +160,7 @@ public class LeaderRole implements FailureListener
 	/**
 	 * 发送已经成功同步，但是accepter那边未拥有的信息给accepter
 	 *
-	 * @param missingSuccess 错过的日志的集合
+	 * @param missingSuccess 错过的日志的集合，accepter发送过来的
 	 * @param sender accepter ip:port
 	 */
 	private void sendMissingSuccessMessages(Set<Long> missingSuccess, Member sender)
