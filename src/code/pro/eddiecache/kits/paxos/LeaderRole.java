@@ -53,7 +53,7 @@ public class LeaderRole implements FailureListener
 	private final Map<Long, Long> successfulMsgIds = new HashMap<>();
 
 	/**
-	 * msgIds of messages that were not
+	 * msgIds of messages that were not completed.
 	 */
 	private final HashSet<Long> messagesCirculating = new HashSet<>();
 	@SuppressWarnings("rawtypes")
@@ -293,6 +293,10 @@ public class LeaderRole implements FailureListener
 			}
 		}
 
+		/**
+		 * 当选leader
+		 * 上任后，向paxos集群同步自己的信息
+		 */
 		@Override
 		protected void onQuorumReached()
 		{
@@ -307,6 +311,7 @@ public class LeaderRole implements FailureListener
 					Serializable choice = proposal.newestOutcome;
 					long msgId = proposal.getMsgId();
 					messagesCirculating.add(msgId);
+					// paxos集群同步协议
 					assistants.add(new MultiAccept(membership, messenger, seqNo, choice, msgId));
 				}
 			}
@@ -375,7 +380,6 @@ public class LeaderRole implements FailureListener
 	/**
 	 * 用于判断某一提案是否提交成功的助理
 	 * 属于二阶段提交的第二阶段
-	 * 负责判断paxos-cluster中的有多少个节点
 	 */
 	private class MultiSuccess extends MultiRequest<Success, SuccessAck>
 	{
@@ -409,7 +413,6 @@ public class LeaderRole implements FailureListener
 		@Override
 		protected void onCompleted()
 		{
-
 			successfulMessages.remove(seqNo);
 			successfulMsgIds.remove(msgId);
 			messagesCirculating.remove(msgId);
