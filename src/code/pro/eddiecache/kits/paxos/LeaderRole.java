@@ -222,6 +222,7 @@ public class LeaderRole implements FailureListener
 		{
 			Acceptance acceptance = viewAccepted.accepted.get(seqNo);
 			Proposal proposal = proposals.get(seqNo);
+			// 本地存储的该提案丢失，补全本地提案
 			if (proposal == null)
 			{
 				proposals.put(seqNo, new Proposal(acceptance.viewNumber, acceptance.message, acceptance.msgId));
