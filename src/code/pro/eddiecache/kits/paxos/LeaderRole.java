@@ -258,6 +258,7 @@ public class LeaderRole implements FailureListener
 
 	/**
 	 * 负责选举工作的助理
+	 * 并且在选举过程中，同步各个节点之间的提案数据
 	 */
 	private class Election extends MultiRequest<NewView, ViewAccepted>
 	{
@@ -271,6 +272,7 @@ public class LeaderRole implements FailureListener
 
 		/**
 		 * 过滤remote-server的心跳信息
+		 * 并且用于提案数据的同步工作
 		 */
 		@Override
 		protected ViewAccepted filterResponse(Serializable message)
@@ -281,6 +283,7 @@ public class LeaderRole implements FailureListener
 				if (viewAccepted.viewNumber != viewNumber) {
 					return null;
 				}
+				// proposal sync
 				registerViewAcceptance(viewAccepted);
 				return viewAccepted;
 			}
