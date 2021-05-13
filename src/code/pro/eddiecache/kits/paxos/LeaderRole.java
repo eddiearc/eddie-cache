@@ -305,13 +305,13 @@ public class LeaderRole implements FailureListener
 
 			for (Long seqNo : proposals.keySet())
 			{
-				Proposal proposal = proposals.get(seqNo);
-				if (proposal != null)
+				Proposal localProposal = proposals.get(seqNo);
+				if (localProposal != null)
 				{
-					Serializable choice = proposal.newestOutcome;
-					long msgId = proposal.getMsgId();
+					Serializable choice = localProposal.newestOutcome;
+					long msgId = localProposal.getMsgId();
 					messagesCirculating.add(msgId);
-					// paxos集群同步协议
+					// paxos集群同步proposal
 					assistants.add(new MultiAccept(membership, messenger, seqNo, choice, msgId));
 				}
 			}
