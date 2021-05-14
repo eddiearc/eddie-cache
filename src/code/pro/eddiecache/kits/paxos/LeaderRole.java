@@ -192,6 +192,14 @@ public class LeaderRole implements FailureListener
 		}
 	}
 
+	/**
+	 * 生成新的任期
+	 *
+	 * update 2021-05-14：
+	 * 使用递增的方式生成新任期
+	 * 可以避免已经存在leader之后，又有新的leader篡位的情况出现
+	 * 但是可能在集群一启动或者集群leader重新选举的时候进行多次选举的情况
+	 */
 	private long newViewNumber()
 	{
 //		int groupSize = membership.groupSize();
