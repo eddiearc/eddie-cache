@@ -77,7 +77,7 @@ public class LeaderRole implements FailureListener
 		Member leader = PaxosUtils.selectLeader(membership.getMembers());
 		if (leader.equals(me))
 		{
-			assistants.add(new Election(membership, messenger, time, viewNumber + newViewNumber()));
+			assistants.add(new Election(membership, messenger, time, newViewNumber()));
 		}
 	}
 
