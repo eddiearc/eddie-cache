@@ -194,10 +194,11 @@ public class LeaderRole implements FailureListener
 
 	private long newViewNumber()
 	{
-		int groupSize = membership.groupSize();
-		long previousBallot = viewNumber / groupSize;
-		viewNumber = (previousBallot + 1) * groupSize + membership.getPositionInGroup();
-		return viewNumber;
+//		int groupSize = membership.groupSize();
+//		long previousBallot = viewNumber / groupSize;
+//		viewNumber = (previousBallot + 1) * groupSize + membership.getPositionInGroup();
+//		return viewNumber;
+		return ++viewNumber;
 	}
 
 	@Override

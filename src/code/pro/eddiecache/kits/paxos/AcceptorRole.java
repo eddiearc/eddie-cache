@@ -116,21 +116,17 @@ public class AcceptorRole
 	}
 
 	/**
-	 * 进入一个新的view (Leader更新换代)
+	 * 进入一个新的view (Leader选举)
 	 */
 	private void onNewView(NewView newView)
 	{
-		if (newView.viewNumber > viewNumber)
+		if (newView.viewNumber >= viewNumber)
 		{
 			if (log.isDebugEnabled()) {
 				log.debug(me + ": vote to " + newView.leader);
 			}
 			this.leader = newView.leader;
 			this.viewNumber = newView.viewNumber;
-			messenger.sendTo(leader, PaxosUtils.serialize(new ViewAccepted(viewNumber, accepted, me)));
-		}
-		else if (newView.viewNumber == viewNumber && newView.leader.equals(leader))
-		{
 			messenger.sendTo(leader, PaxosUtils.serialize(new ViewAccepted(viewNumber, accepted, me)));
 		}
 	}
