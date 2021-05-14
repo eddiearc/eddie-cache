@@ -7,7 +7,6 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import pro.eddiecache.core.CacheEventQueueFactory;
 import pro.eddiecache.kits.paxos.comm.CommLayer;
 import pro.eddiecache.kits.paxos.comm.Member;
 import pro.eddiecache.kits.paxos.messages.Abort;
@@ -124,7 +123,7 @@ public class AcceptorRole
 		if (newView.viewNumber > viewNumber)
 		{
 			if (log.isDebugEnabled()) {
-				log.debug(me + ": setting leader to " + newView.leader);
+				log.debug(me + ": vote to " + newView.leader);
 			}
 			this.leader = newView.leader;
 			this.viewNumber = newView.viewNumber;
