@@ -39,6 +39,7 @@ import pro.eddiecache.utils.struct.LRUMap;
 import pro.eddiecache.utils.timing.ElapsedTimer;
 import pro.eddiecache.kits.disk.IDiskCacheAttributes;
 
+@Deprecated
 public class IndexedDiskCache<K, V> extends AbstractDiskCache<K, V>
 {
 	private static final Log log = LogFactory.getLog(IndexedDiskCache.class);

@@ -27,7 +27,7 @@ import pro.eddiecache.core.control.ContextCacheManager;
 import pro.eddiecache.core.model.ICacheElement;
 import pro.eddiecache.core.model.IContextCacheManager;
 import pro.eddiecache.core.model.IShutdownObserver;
-import pro.eddiecache.io.IOClassLoaderWarpper;
+import pro.eddiecache.io.IOClassLoaderWrapper;
 import pro.eddiecache.kits.lateral.ILateralCacheListener;
 import pro.eddiecache.kits.lateral.LateralElementDescriptor;
 import pro.eddiecache.utils.threadpool.CacheKitThreadFactory;
@@ -411,7 +411,7 @@ public class LateralTCPReceiver<K, V> implements ILateralCacheListener<K, V>, IS
 
 			try
 			{
-				ois = new IOClassLoaderWarpper(socket.getInputStream(), null);
+				ois = new IOClassLoaderWrapper(socket.getInputStream(), null);
 			}
 			catch (Exception e)
 			{

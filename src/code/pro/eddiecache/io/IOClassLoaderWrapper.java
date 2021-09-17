@@ -6,11 +6,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectStreamClass;
 import java.lang.reflect.Proxy;
 
-public class IOClassLoaderWarpper extends ObjectInputStream
+public class IOClassLoaderWrapper extends ObjectInputStream
 {
 	private final ClassLoader classLoader;
 
-	public IOClassLoaderWarpper(final InputStream in, final ClassLoader classLoader) throws IOException
+	public IOClassLoaderWrapper(final InputStream in, final ClassLoader classLoader) throws IOException
 	{
 		super(in);
 		this.classLoader = classLoader != null ? classLoader : Thread.currentThread().getContextClassLoader();

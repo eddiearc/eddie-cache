@@ -32,6 +32,7 @@ import pro.eddiecache.core.stats.Stats;
 import pro.eddiecache.kits.KitCacheAttributes;
 import pro.eddiecache.kits.disk.AbstractDiskCache;
 
+@Deprecated
 public class BlockDiskCache<K, V> extends AbstractDiskCache<K, V> implements IRequireScheduler
 {
 	private static final Log log = LogFactory.getLog(BlockDiskCache.class);

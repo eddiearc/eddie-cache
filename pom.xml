@@ -33,5 +33,11 @@
             <artifactId>dom4j</artifactId>
             <version>2.1.1</version>
         </dependency>
+        <!-- rocksdb jni-->
+        <dependency>
+            <groupId>org.rocksdb</groupId>
+            <artifactId>rocksdbjni</artifactId>
+            <version>6.10.2</version>
+        </dependency>
     </dependencies>
 </project>

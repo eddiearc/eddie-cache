@@ -9,8 +9,19 @@ import pro.eddiecache.core.logger.ICacheEvent;
 import pro.eddiecache.core.logger.ICacheEventWrapper;
 import pro.eddiecache.core.model.ICacheElement;
 
-public abstract class AbstractKitCacheEvent<K, V> extends AbstractKitCache<K, V>
-{
+public abstract class AbstractKitCacheEvent<K, V> extends AbstractKitCache<K, V> {
+
+	private final String cacheName;
+
+	protected AbstractKitCacheEvent(String cacheName) {
+		this.cacheName = cacheName;
+	}
+
+	@Override
+	public String getCacheName() {
+		return this.cacheName;
+	}
+
 	@Override
 	public void update(ICacheElement<K, V> cacheElement) throws IOException
 	{

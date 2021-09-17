@@ -14,7 +14,7 @@ import org.apache.commons.logging.LogFactory;
 
 import pro.eddiecache.core.CacheInfo;
 import pro.eddiecache.core.model.IShutdownObserver;
-import pro.eddiecache.io.IOClassLoaderWarpper;
+import pro.eddiecache.io.IOClassLoaderWrapper;
 import pro.eddiecache.utils.threadpool.CacheKitThreadFactory;
 
 /**
@@ -112,7 +112,7 @@ public class UDPDiscoveryReceiver implements Runnable, IShutdownObserver
 			}
 
 			final ByteArrayInputStream byteStream = new ByteArrayInputStream(buffer, 0, packet.getLength());
-			objectStream = new IOClassLoaderWarpper(byteStream, null);
+			objectStream = new IOClassLoaderWrapper(byteStream, null);
 			obj = objectStream.readObject();
 
 			if (obj instanceof UDPDiscoveryMessage)

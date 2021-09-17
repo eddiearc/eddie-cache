@@ -14,21 +14,9 @@ public interface ILateralCacheAttributes extends KitCacheAttributes
 
 	int DEFAULT_DAEMON_QUEUE_MAX_SIZE = 1000;
 
-	void setUdpMulticastAddr(String multicastAddr);
-
-	String getUdpMulticastAddr();
-
-	void setUdpMulticastPort(int multicastPort);
-
-	int getUdpMulticastPort();
-
 	void setTransmissionType(Type type);
 
 	Type getTransmissionType();
-
-	void setTransmissionTypeName(String typeName);
-
-	String getTransmissionTypeName();
 
 	void setPutOnlyMode(boolean mode);
 

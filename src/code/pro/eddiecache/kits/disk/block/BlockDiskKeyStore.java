@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import pro.eddiecache.io.IOClassLoaderWarpper;
+import pro.eddiecache.io.IOClassLoaderWrapper;
 import pro.eddiecache.kits.disk.IDiskCacheAttributes.DiskLimitType;
 import pro.eddiecache.utils.struct.AbstractLRUMap;
 import pro.eddiecache.utils.struct.LRUMap;
@@ -200,7 +200,7 @@ public class BlockDiskKeyStore<K>
 			{
 				FileInputStream fis = new FileInputStream(keyFile);
 				BufferedInputStream bis = new BufferedInputStream(fis, 65536);
-				ObjectInputStream ois = new IOClassLoaderWarpper(bis, null);
+				ObjectInputStream ois = new IOClassLoaderWrapper(bis, null);
 				try
 				{
 					while (true)

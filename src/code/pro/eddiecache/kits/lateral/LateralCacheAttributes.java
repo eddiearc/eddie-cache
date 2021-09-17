@@ -30,30 +30,6 @@ public class LateralCacheAttributes extends AbstractKitCacheAttributes implement
 	}
 
 	@Override
-	public void setUdpMulticastAddr(String val)
-	{
-		udpMulticastAddr = val;
-	}
-
-	@Override
-	public String getUdpMulticastAddr()
-	{
-		return udpMulticastAddr;
-	}
-
-	@Override
-	public void setUdpMulticastPort(int val)
-	{
-		udpMulticastPort = val;
-	}
-
-	@Override
-	public int getUdpMulticastPort()
-	{
-		return udpMulticastPort;
-	}
-
-	@Override
 	public void setTransmissionType(Type val)
 	{
 		this.transmissionType = val;
@@ -64,19 +40,6 @@ public class LateralCacheAttributes extends AbstractKitCacheAttributes implement
 	public Type getTransmissionType()
 	{
 		return this.transmissionType;
-	}
-
-	@Override
-	public void setTransmissionTypeName(String val)
-	{
-		this.transmissionTypeName = val;
-		this.transmissionType = Type.valueOf(val);
-	}
-
-	@Override
-	public String getTransmissionTypeName()
-	{
-		return this.transmissionTypeName;
 	}
 
 	@Override
@@ -119,7 +82,7 @@ public class LateralCacheAttributes extends AbstractKitCacheAttributes implement
 	public String toString()
 	{
 		StringBuilder sb = new StringBuilder();
-		sb.append(transmissionTypeName + httpServer + udpMulticastAddr + String.valueOf(udpMulticastPort));
+		sb.append(transmissionTypeName + httpServer + udpMulticastAddr + udpMulticastPort);
 		return sb.toString();
 	}
 }

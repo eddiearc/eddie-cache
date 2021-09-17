@@ -26,63 +26,49 @@ public class LateralCache<K, V> extends AbstractKitCacheEvent<K, V>
 
 	private final ILateralCacheAttributes lateralCacheAttributes;
 
-	final String cacheName;
 
 	private ICacheServiceRemote<K, V> lateralCacheService;
 
 	private LateralCacheMonitor monitor;
 
-	public LateralCache(ILateralCacheAttributes cattr, ICacheServiceRemote<K, V> lateral, LateralCacheMonitor monitor)
-	{
-		this.cacheName = cattr.getCacheName();
+	public LateralCache(ILateralCacheAttributes cattr, ICacheServiceRemote<K, V> lateral, LateralCacheMonitor monitor) {
+		super(cattr.getCacheName());
 		this.lateralCacheAttributes = cattr;
 		this.lateralCacheService = lateral;
 		this.monitor = monitor;
 	}
 
-	public LateralCache(ILateralCacheAttributes cattr)
-	{
-		this.cacheName = cattr.getCacheName();
+	public LateralCache(ILateralCacheAttributes cattr) {
+		super(cattr.getCacheName());
 		this.lateralCacheAttributes = cattr;
 	}
 
 	@Override
-	protected void processUpdate(ICacheElement<K, V> ce) throws IOException
-	{
-		try
-		{
-			if (ce != null)
-			{
-				if (log.isDebugEnabled())
-				{
+	protected void processUpdate(ICacheElement<K, V> ce) throws IOException {
+		try {
+			if (ce != null) {
+				if (log.isDebugEnabled()) {
 					log.debug("Update: lateral = [" + lateralCacheService + "], " + "CacheInfo.listenerId = "
 							+ CacheInfo.listenerId);
 				}
 				lateralCacheService.update(ce, CacheInfo.listenerId);
 			}
-		}
-		catch (IOException ex)
-		{
+		} catch (IOException ex) {
 			handleException(ex,
 					"Fail to put [" + ce.getKey() + "] to " + ce.getCacheName() + "@" + lateralCacheAttributes);
 		}
 	}
 
 	@Override
-	protected ICacheElement<K, V> processGet(K key) throws IOException
-	{
+	protected ICacheElement<K, V> processGet(K key) throws IOException {
 		ICacheElement<K, V> obj = null;
 
-		if (this.lateralCacheAttributes.getPutOnlyMode())
-		{
+		if (this.lateralCacheAttributes.getPutOnlyMode()) {
 			return null;
 		}
-		try
-		{
-			obj = lateralCacheService.get(cacheName, key);
-		}
-		catch (Exception e)
-		{
+		try {
+			obj = lateralCacheService.get(getCacheName(), key);
+		} catch (Exception e) {
 			log.error(e);
 			handleException(e, "Fail to get [" + key + "] from " + lateralCacheAttributes.getCacheName() + "@"
 					+ lateralCacheAttributes);
@@ -91,18 +77,13 @@ public class LateralCache<K, V> extends AbstractKitCacheEvent<K, V>
 	}
 
 	@Override
-	protected Map<K, ICacheElement<K, V>> processGetMatching(String pattern) throws IOException
-	{
-		if (this.lateralCacheAttributes.getPutOnlyMode())
-		{
+	protected Map<K, ICacheElement<K, V>> processGetMatching(String pattern) throws IOException {
+		if (this.lateralCacheAttributes.getPutOnlyMode()) {
 			return Collections.emptyMap();
 		}
-		try
-		{
-			return lateralCacheService.getMatching(cacheName, pattern);
-		}
-		catch (IOException e)
-		{
+		try {
+			return lateralCacheService.getMatching(getCacheName(), pattern);
+		} catch (IOException e) {
 			log.error(e);
 			handleException(e, "Fail to getMatching [" + pattern + "] from " + lateralCacheAttributes.getCacheName()
 					+ "@" + lateralCacheAttributes);
@@ -111,18 +92,14 @@ public class LateralCache<K, V> extends AbstractKitCacheEvent<K, V>
 	}
 
 	@Override
-	protected Map<K, ICacheElement<K, V>> processGetMultiple(Set<K> keys) throws IOException
-	{
+	protected Map<K, ICacheElement<K, V>> processGetMultiple(Set<K> keys) throws IOException {
 		Map<K, ICacheElement<K, V>> elements = new HashMap<K, ICacheElement<K, V>>();
 
-		if (keys != null && !keys.isEmpty())
-		{
-			for (K key : keys)
-			{
+		if (keys != null && !keys.isEmpty()) {
+			for (K key : keys) {
 				ICacheElement<K, V> element = get(key);
 
-				if (element != null)
-				{
+				if (element != null) {
 					elements.put(key, element);
 				}
 			}
@@ -132,14 +109,10 @@ public class LateralCache<K, V> extends AbstractKitCacheEvent<K, V>
 	}
 
 	@Override
-	public Set<K> getKeySet() throws IOException
-	{
-		try
-		{
-			return lateralCacheService.getKeySet(cacheName);
-		}
-		catch (IOException ex)
-		{
+	public Set<K> getKeySet() throws IOException {
+		try {
+			return lateralCacheService.getKeySet(getCacheName());
+		} catch (IOException ex) {
 			handleException(ex,
 					"Fail to get key set from " + lateralCacheAttributes.getCacheName() + "@" + lateralCacheAttributes);
 		}
@@ -147,19 +120,14 @@ public class LateralCache<K, V> extends AbstractKitCacheEvent<K, V>
 	}
 
 	@Override
-	protected boolean processRemove(K key) throws IOException
-	{
-		if (log.isDebugEnabled())
-		{
+	protected boolean processRemove(K key) throws IOException {
+		if (log.isDebugEnabled()) {
 			log.debug("Remove key:" + key);
 		}
 
-		try
-		{
-			lateralCacheService.remove(cacheName, key, CacheInfo.listenerId);
-		}
-		catch (IOException ex)
-		{
+		try {
+			lateralCacheService.remove(getCacheName(), key, CacheInfo.listenerId);
+		} catch (IOException ex) {
 			handleException(ex, "Fail to remove " + key + " from " + lateralCacheAttributes.getCacheName() + "@"
 					+ lateralCacheAttributes);
 		}
@@ -167,36 +135,27 @@ public class LateralCache<K, V> extends AbstractKitCacheEvent<K, V>
 	}
 
 	@Override
-	protected void processRemoveAll() throws IOException
-	{
-		try
-		{
-			lateralCacheService.removeAll(cacheName, CacheInfo.listenerId);
-		}
-		catch (IOException ex)
-		{
+	protected void processRemoveAll() throws IOException {
+		try {
+			lateralCacheService.removeAll(getCacheName(), CacheInfo.listenerId);
+		} catch (IOException ex) {
 			handleException(ex,
 					"Fail to remove all from " + lateralCacheAttributes.getCacheName() + "@" + lateralCacheAttributes);
 		}
 	}
 
 	@Override
-	protected void processDispose() throws IOException
-	{
-		try
-		{
+	protected void processDispose() throws IOException {
+		try {
 			lateralCacheService.dispose(this.lateralCacheAttributes.getCacheName());
-		}
-		catch (IOException ex)
-		{
+		} catch (IOException ex) {
 			log.error("Couldn't dispose", ex);
 			handleException(ex, "fail to dispose " + lateralCacheAttributes.getCacheName());
 		}
 	}
 
 	@Override
-	public CacheStatus getStatus()
-	{
+	public CacheStatus getStatus() {
 		return this.lateralCacheService instanceof IDaemon ? CacheStatus.ERROR : CacheStatus.ALIVE;
 	}
 
@@ -212,84 +171,61 @@ public class LateralCache<K, V> extends AbstractKitCacheEvent<K, V>
 		return CacheType.LATERAL_CACHE;
 	}
 
-	@Override
-	public String getCacheName()
-	{
-		return cacheName;
-	}
-
-	private void handleException(Exception ex, String msg) throws IOException
-	{
-
+	private void handleException(Exception ex, String msg) throws IOException {
 		lateralCacheService = new DaemonCacheServiceRemote<K, V>(lateralCacheAttributes.getDaemonQueueMaxSize());
 		monitor.notifyError();
 
-		if (ex instanceof IOException)
-		{
+		if (ex instanceof IOException) {
 			throw (IOException) ex;
 		}
 		throw new IOException(ex.getMessage());
 	}
 
-	public void fixCache(ICacheServiceRemote<K, V> restoredLateral)
-	{
-		if (this.lateralCacheService != null && this.lateralCacheService instanceof DaemonCacheServiceRemote)
-		{
+	public void fixCache(ICacheServiceRemote<K, V> restoredLateral) {
+		if (this.lateralCacheService != null && this.lateralCacheService instanceof DaemonCacheServiceRemote) {
 			DaemonCacheServiceRemote<K, V> daemon = (DaemonCacheServiceRemote<K, V>) this.lateralCacheService;
 			this.lateralCacheService = restoredLateral;
-			try
-			{
+			try {
 				daemon.spreadEvents(restoredLateral);
-			}
-			catch (Exception e)
-			{
-				try
-				{
+			} catch (Exception e) {
+				try {
 					handleException(e,
 							"Problem in spreading events from DaemonCacheServiceRemote to new Lateral Service.");
-				}
-				catch (IOException e1)
-				{
+				} catch (IOException ignored) {
 				}
 			}
-		}
-		else
-		{
+		} else {
 			this.lateralCacheService = restoredLateral;
 		}
 	}
 
 	@Override
-	public String getStats()
-	{
+	public String getStats() {
 		return "";
 	}
 
 	@Override
-	public KitCacheAttributes getKitCacheAttributes()
-	{
+	public KitCacheAttributes getKitCacheAttributes() {
 		return lateralCacheAttributes;
 	}
 
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("\n LateralCache ");
-		sb.append("\n Cache Name [" + lateralCacheAttributes.getCacheName() + "]");
-		sb.append("\n cattr =  [" + lateralCacheAttributes + "]");
+		sb.append("\n LateralCache ")
+				.append("\n Cache Name [").append(lateralCacheAttributes.getCacheName()).append("]")
+				.append("\n cattr =  [").append(lateralCacheAttributes).append("]");
+
 		return sb.toString();
 	}
 
 	@Override
-	public String getEventLoggerExtraInfo()
-	{
+	public String getEventLoggerExtraInfo() {
 		return null;
 	}
 
 	@Override
-	public IStats getStatistics()
-	{
+	public IStats getStatistics() {
 		IStats stats = new Stats();
 		stats.setTypeName("LateralCache");
 		return stats;

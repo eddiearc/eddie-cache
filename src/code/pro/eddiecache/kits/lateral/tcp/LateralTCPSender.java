@@ -9,7 +9,7 @@ import java.net.Socket;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import pro.eddiecache.io.IOClassLoaderWarpper;
+import pro.eddiecache.io.IOClassLoaderWrapper;
 import pro.eddiecache.kits.lateral.LateralElementDescriptor;
 
 /**
@@ -168,7 +168,7 @@ public class LateralTCPSender
 			try
 			{
 				socket.setSoTimeout(socketSoTimeOut);
-				ois = new IOClassLoaderWarpper(socket.getInputStream(), null);
+				ois = new IOClassLoaderWrapper(socket.getInputStream(), null);
 				response = ois.readObject();
 			}
 			catch (IOException ioe)
