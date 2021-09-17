@@ -7,8 +7,7 @@ import java.util.Set;
 import pro.eddiecache.core.CacheStatus;
 import pro.eddiecache.core.match.IKeyMatcher;
 
-public interface ICache<K, V> extends ICacheType
-{
+public interface ICache<K, V> extends ICacheType {
 	void update(ICacheElement<K, V> element) throws IOException;
 
 	ICacheElement<K, V> get(K key) throws IOException;

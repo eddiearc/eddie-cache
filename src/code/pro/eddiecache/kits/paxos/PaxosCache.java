@@ -24,12 +24,13 @@ import pro.eddiecache.kits.paxos.comm.Members;
 public class PaxosCache<K, V> extends AbstractKitCacheEvent<K, V>
 {
 
-	private PaxosGroup group;
+	private final PaxosGroup group;
 
-	public PaxosCache(PaxosCacheAttributes cattr) throws NumberFormatException, UnknownHostException, SocketException
+	public PaxosCache(PaxosCacheAttributes attr) throws NumberFormatException, UnknownHostException, SocketException
 	{
+		super(attr.getCacheName());
 		List<Member> memberList = new ArrayList<Member>();
-		String servers = cattr.getServers();
+		String servers = attr.getServers();
 		String[] server = servers.split(",");
 
 		for (String s : server)
@@ -44,7 +45,7 @@ public class PaxosCache<K, V> extends AbstractKitCacheEvent<K, V>
 
 		Members members = new Members(memberList);
 
-		int myPosition = Integer.parseInt(cattr.getMyPosition());
+		int myPosition = Integer.parseInt(attr.getMyPosition());
 
 		group = new PaxosGroup(members.get(myPosition), new PaxosCacheReceiver());
 
@@ -87,13 +88,6 @@ public class PaxosCache<K, V> extends AbstractKitCacheEvent<K, V>
 
 	@Override
 	public String getStats()
-	{
-
-		return null;
-	}
-
-	@Override
-	public String getCacheName()
 	{
 
 		return null;

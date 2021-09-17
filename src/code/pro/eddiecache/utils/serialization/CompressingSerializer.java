@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import pro.eddiecache.core.model.IElementSerializer;
-import pro.eddiecache.io.IOClassLoaderWarpper;
+import pro.eddiecache.io.IOClassLoaderWrapper;
 import pro.eddiecache.utils.zip.CompressionUtil;
 
 public class CompressingSerializer implements IElementSerializer
@@ -52,7 +52,7 @@ public class CompressingSerializer implements IElementSerializer
 	{
 		ByteArrayInputStream bais = new ByteArrayInputStream(decompressedByteArray);
 		BufferedInputStream bis = new BufferedInputStream(bais);
-		ObjectInputStream ois = new IOClassLoaderWarpper(bis, null);
+		ObjectInputStream ois = new IOClassLoaderWrapper(bis, null);
 
 		try
 		{

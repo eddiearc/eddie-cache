@@ -40,7 +40,7 @@ public class CacheStats extends Stats implements ICacheStats
 	{
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("cache name = " + cacheName);
+		sb.append("cache name = ").append(cacheName);
 
 		if (getStatElements() != null)
 		{

@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import pro.eddiecache.core.model.IElementSerializer;
-import pro.eddiecache.io.IOClassLoaderWarpper;
+import pro.eddiecache.io.IOClassLoaderWrapper;
 
 public class StandardSerializer implements IElementSerializer
 {
@@ -33,7 +33,7 @@ public class StandardSerializer implements IElementSerializer
 	{
 		ByteArrayInputStream bais = new ByteArrayInputStream(data);
 		BufferedInputStream bis = new BufferedInputStream(bais);
-		ObjectInputStream ois = new IOClassLoaderWarpper(bis, loader);
+		ObjectInputStream ois = new IOClassLoaderWrapper(bis, loader);
 		try
 		{
 			@SuppressWarnings("unchecked")

@@ -24,6 +24,7 @@ import pro.eddiecache.core.stats.Stats;
 import pro.eddiecache.kits.AbstractKitCacheEvent;
 import pro.eddiecache.utils.struct.LRUMap;
 
+@Deprecated
 public abstract class AbstractDiskCache<K, V> extends AbstractKitCacheEvent<K, V>
 {
 	private static final Log log = LogFactory.getLog(AbstractDiskCache.class);
@@ -32,11 +33,11 @@ public abstract class AbstractDiskCache<K, V> extends AbstractKitCacheEvent<K, V
 
 	private Map<K, PurgatoryElement<K, V>> purgatory;
 
-	private ICacheEventQueue<K, V> cacheEventQueue;
+	private final ICacheEventQueue<K, V> cacheEventQueue;
 
 	private boolean alive = false;
 
-	private String cacheName;
+	private final String cacheName;
 
 	private int purgHits = 0;
 
@@ -44,6 +45,7 @@ public abstract class AbstractDiskCache<K, V> extends AbstractKitCacheEvent<K, V
 
 	protected AbstractDiskCache(IDiskCacheAttributes attr)
 	{
+		super(attr.getCacheName());
 		this.diskCacheAttributes = attr;
 		this.cacheName = attr.getCacheName();
 
