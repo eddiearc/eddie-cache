@@ -27,13 +27,11 @@ public class CacheElementSerialized<K, V> extends CacheElement<K, V> implements 
 	@Override
 	public String toString()
 	{
-		StringBuilder sb = new StringBuilder();
-		sb.append("\n CacheElementSerialized: ");
-		sb.append("\n CacheName = [" + getCacheName() + "]");
-		sb.append("\n Key = [" + getKey() + "]");
-		sb.append("\n SerializedValue = " + Arrays.toString(getSerializedValue()));
-		sb.append("\n ElementAttributes = " + getElementAttributes());
-		return sb.toString();
+		return "\n CacheElementSerialized: " +
+				"\n CacheName = [" + getCacheName() + "]" +
+				"\n Key = [" + getKey() + "]" +
+				"\n SerializedValue = " + Arrays.toString(getSerializedValue()) +
+				"\n ElementAttributes = " + getElementAttributes();
 	}
 
 }
