@@ -8,6 +8,8 @@ public interface ICacheType
 
 		DISK_CACHE,
 
+		ROCKSDB,
+
 		LATERAL_CACHE,
 
 		REMOTE_CACHE,
