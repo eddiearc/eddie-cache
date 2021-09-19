@@ -45,4 +45,12 @@ public class StandardSerializer implements IElementSerializer
 			ois.close();
 		}
 	}
+
+	public static IElementSerializer getInstance() {
+		return SINGLETON.instance;
+	}
+
+	private static class SINGLETON {
+		public static IElementSerializer instance = new StandardSerializer();
+	}
 }

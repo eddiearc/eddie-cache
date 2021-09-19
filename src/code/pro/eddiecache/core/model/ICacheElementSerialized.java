@@ -1,6 +1,9 @@
 package pro.eddiecache.core.model;
 
-public interface ICacheElementSerialized<K, V> extends ICacheElement<K, V>
-{
+/**
+ * serialized cache element
+ */
+public interface ICacheElementSerialized {
+	byte[] getSerializedKey();
 	byte[] getSerializedValue();
 }
